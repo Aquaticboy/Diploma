@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Include your scripts -->
+    <script src="./app.js"></script>
+    <script src="./register_page.js"></script>
+</head>
+<body>
+    <p>Hello!</p>
+
+    <h1>Register Form</h1>
+    <form id="registerForm">
+        <label for="accName">Name:</label>
+        <input type="text" id="accName" name="accName"><br><br>
+        
+        <label for="accSurname">Surname:</label>
+        <input type="text" id="accSurname" name="accSurname"><br><br>
+        
+        <label for="accLogin">Login:</label>
+        <input type="text" id="accLogin" name="accLogin"><br><br>
+        
+        <label for="accPassword">Password:</label>
+        <input type="password" id="accPassword" name="accPassword"><br><br>
+        
+        <button type="submit">Register</button>
+    </form>
+
+<script >
+    document.getElementById("registerForm").addEventListener("submit", function(event){
+        event.preventDefault();
+        
+        var accName = document.getElementById("accName").value;
+        var accSurname = document.getElementById("accSurname").value;
+        var accLogin = document.getElementById("accLogin").value;
+        var accPassword = document.getElementById("accPassword").value;
+
+        acc_register_func(accName, accSurname, accLogin, accPassword, db_connection);
+    });
+</script>
+
+</body>
+</html>

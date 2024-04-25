@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net" modified="2024-04-06T10:58:09.742Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="pbT_G2fqPtuxXuiwHT9u" version="24.2.2" type="device">
+  <diagram name="Page-1" id="otKbZ5eDS4QXKQmNEcjd">
+    <mxGraphModel dx="1235" dy="665" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="5abaeXxXVuz5VBILq2fE-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="80" width="880" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="5abaeXxXVuz5VBILq2fE-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="80" width="880" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5abaeXxXVuz5VBILq2fE-3" value="Текст з посиланням" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="910" y="90" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5abaeXxXVuz5VBILq2fE-4" value="Текст" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=23;" vertex="1" parent="1">
+          <mxGeometry x="140" y="90" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5abaeXxXVuz5VBILq2fE-5" value="Текст з посиланням" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="220" y="90" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5abaeXxXVuz5VBILq2fE-6" value="Текст з посиланням" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="310" y="90" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5abaeXxXVuz5VBILq2fE-7" value="Текст з посиланням" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="90" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5abaeXxXVuz5VBILq2fE-8" value="Кнопка" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="135" width="90" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="5abaeXxXVuz5VBILq2fE-10" value="&lt;font style=&quot;font-size: 28px;&quot;&gt;Текст&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="530" y="150" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5abaeXxXVuz5VBILq2fE-11" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="245" y="190" width="630" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="5abaeXxXVuz5VBILq2fE-13" value="Текст" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="525" y="250" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5abaeXxXVuz5VBILq2fE-14" value="Кнопка" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="515" y="490" width="90" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="5abaeXxXVuz5VBILq2fE-23" value="Поле для вводу" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="450" width="560" height="33" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
