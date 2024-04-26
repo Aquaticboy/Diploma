@@ -8,54 +8,33 @@
 <body>
     <h1>Register Form</h1>
     <form id="registerForm">
-        <label for="accName">Name:</label>
-        <input type="text" id="accName" name="accName" required><br><br>
+        <div class="mt-2 mb-2">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Учень">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Учень
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Вчитель">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Вчитель
+                </label>
+              </div>
+        </div>
         
-        <label for="accSurname">Surname:</label>
-        <input type="text" id="accSurname" name="accSurname" required><br><br>
-        
-        <label for="accLogin">Login:</label>
-        <input type="text" id="accLogin" name="accLogin" required><br><br>
-        
-        <label for="accPassword">Password:</label>
-        <input type="password" id="accPassword" name="accPassword" required><br><br>
-        
-        <button type="button" onclick="registerUser()">Register</button>
+        <button type="button" onclick="enter()">Enter</button>
     </form>
 
     <script>
-        function registerUser() {
-            // Get form data
-            var accName = document.getElementById("accName").value;
-            var accSurname = document.getElementById("accSurname").value;
-            var accLogin = document.getElementById("accLogin").value;
-            var accPassword = document.getElementById("accPassword").value;
+        function enter() {
+            var activeRadioButton = document.querySelector('input[name="flexRadioDefault"]:checked');
 
-            // Create request body
-            var data = {
-                acc_name: accName,
-                acc_surname: accSurname,
-                acc_login: accLogin,
-                acc_password: accPassword
-            };
-
-            // Send AJAX request
-            fetch('http://localhost:3000/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.text())
-            .then(data => {
-                console.log(data); // Log response from server
-                alert(data); // Show response from server
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error occurred. Please try again.'); // Show error message
-            });
+            if (activeRadioButton) {
+                var value = activeRadioButton.value;
+            } else {
+                alert("No radio button is checked.");
+            }
         }
     </script>
 </body>

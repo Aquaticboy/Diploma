@@ -13,79 +13,151 @@
 </head>
 <body>
 
-<div class="temp-for-div2">
-    <div class="temp-for-div">
-
-        <h1 class="large-h1">Реєстрація</h1>
-
-        <div class="mb-3">
-            <label for="" class="form-label-custom">Ім'я</label>
-            <input
-                type="text"
-                class="form-control"
-                name=""
-                id=""
-                aria-describedby="helpId"
-                placeholder=""
-            />
-        </div>
-        
-        <div class="mb-3">
-            <label for="" class="form-label-custom">Прізвище</label>
-            <input
-                type="text"
-                class="form-control"
-                name=""
-                id=""
-                aria-describedby="helpId"
-                placeholder=""
-            />
-        </div>
-        
-        <div class="mb-3">
-            <label for="" class="form-label-custom">Логін</label>
-            <input
-                type="text"
-                class="form-control"
-                name=""
-                id=""
-                aria-describedby="helpId"
-                placeholder=""
-            />
-        </div>
-        
-        
-        <div class="mb-3">
-            <label for="" class="form-label-custom">Пароль</label>
-            <input
-                type="password"
-                class="form-control"
-                name=""
-                id=""
-                aria-describedby="helpId"
-                placeholder=""
-            />
-        </div>
-
-        <div class="form-button-custom">
+<form action="" id="registerForm">
+    <div class="temp-for-div2">
+        <div class="temp-for-div">
+    
+            <h1 class="large-h1">Реєстрація</h1>
+    
+            <div class="mb-3">
+                <label for="" class="form-label-custom">Ім'я</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="accName"
+                    id="accName"
+                    aria-describedby="helpId"
+                    placeholder=""
+                />
+            </div>
             
-            <div class="form-button-custom1">
-                <div class="form-button-custom1">
-                    <button type="submit" class="btn btn-primary">
-                        Зареєструватися
-                    </button>
-                <a href="./login_page.html" class="button btn btn-primary">
-                    Повернутися назад
-                </a>
+            <div class="mb-3">
+                <label for="" class="form-label-custom">Прізвище</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="accSurname"
+                    id="accSurname"
+                    aria-describedby="helpId"
+                    placeholder=""
+                />
+            </div>
+            
+            <div class="mb-3">
+                <label for="" class="form-label-custom">Логін</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="accLogin"
+                    id="accLogin"
+                    aria-describedby="helpId"
+                    placeholder=""
+                />
+            </div>
+            
+            
+            <div class="mb-3">
+                <label for="" class="form-label-custom">Пароль</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    name="accPassword"
+                    id="accPassword"
+                    aria-describedby="helpId"
+                    placeholder=""
+                />
+            </div>
+    
+            <div class="mt-2 mb-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Учень">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Учень
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Вчитель">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Вчитель
+                    </label>
+                  </div>
             </div>
 
+            <div class="form-button-custom">
+                
+                <div class="form-button-custom1">
+                    <div class="form-button-custom1">
+                        <button type="submit" class="btn btn-primary" onclick="registerUser()">
+                            Зареєструватися
+                        </button>
+                    <a href="./login_page.html" class="button btn btn-primary">
+                        Повернутися назад
+                    </a>
+                </div>
+    
+            </div>
+    
+            
+
         </div>
-
-
-
     </div>
-</div>
+</form>
 
     
+<script>
+    function registerUser() {
+            //Get value from acrive radio
+            var accPermitionLevel_radionValue = document.querySelector('input[name="flexRadioDefault"]:checked');
+
+            if (accPermitionLevel_radionValue) {
+                if(accPermitionLevel_radionValue.value === "Учень"){
+                    var accPermitionLevel = 1;
+                } else if(accPermitionLevel_radionValue.value === "Вчитель"){
+                    var accPermitionLevel = 2;
+                }
+            } else {
+                alert("No radio button is checked.");
+            }
+
+
+            // Get form data
+            var accName = document.getElementById("accName").value;
+            var accSurname = document.getElementById("accSurname").value;
+            var accLogin = document.getElementById("accLogin").value;
+            var accPassword = document.getElementById("accPassword").value;
+
+            let accUserId = 43522;
+
+
+            // Create request body
+            var data = {
+                user_id: accUserId,
+                user_name: accName,
+                user_surname: accSurname,
+                user_login: accLogin,
+                user_password: accPassword,
+                user_permition_level: accPermitionLevel
+            };
+
+            // Send AJAX request
+            fetch('http://localhost:3000/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                alert(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error occurred. Please try again.');
+            });
+        }
+</script>
+
 </body>
 </html>

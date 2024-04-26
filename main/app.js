@@ -35,21 +35,29 @@ db_connection.connect((err) => {
     console.log('Connected to MySQL database');
 });
 
+
+
+
 // Handle POST requests to /register
 app.post('/register', (req, res) => {
-    const { acc_name, acc_surname, acc_login, acc_password } = req.body;
+    const { user_id, user_name, user_surname, user_login, user_password, user_permition_level } = req.body;
+    
+    
     // Insert new user into the database
-    const sql = `INSERT INTO justfortest (first, second, third, fourth) VALUES (?, ?, ?, ?)`;
-    db_connection.query(sql, [acc_name, acc_surname, acc_login, acc_password], (err, result) => {
+    const sql = `INSERT INTO user_information (user_id, user_name, user_surname, user_login, user_password, user_permition_level) VALUES ('${user_id}', '${user_name}', '${user_surname}', '${user_login}', '${user_password}', '${user_permition_level}')`;
+    db_connection.query(sql, (err, result) => {
         if (err) {
             console.error('Error inserting user:', err);
             res.status(500).send('Error registering user');
             return;
         }
         console.log('User registered successfully');
+        
         res.send('User registered successfully');
     });
 });
+
+
 
 // Start server
 app.listen(port, () => {
