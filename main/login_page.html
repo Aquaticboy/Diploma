@@ -25,7 +25,7 @@
                 type="text"
                 class="form-control"
                 name=""
-                id=""
+                id="input_userLogin"
                 aria-describedby="login_input"
                 placeholder=""
             />
@@ -38,7 +38,7 @@
                 type="password"
                 class="form-control"
                 name=""
-                id=""
+                id="input_userPassword"
                 aria-describedby="password_input"
                 placeholder=""
             />
@@ -47,7 +47,7 @@
         <div class="form-button-custom">
             
             <div class="form-button-custom1">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" onclick="send_login_request()">
                     Увійти
                 </button>
                 <div class="form-button-custom1">
@@ -63,10 +63,44 @@
     </div>
 </div>
 
-    <style>
+    <script>
 
+        function send_login_request(){
+        
+            let userPassword = document.getElementById("input_userPassword").value;
+            let userLogin = document.getElementById("input_userLogin").value;
 
+            var body = {
+                user_login: userLogin,
+                user_password: userPassword
+            }
 
-    </style>
+            fetch("http://localhost:3000/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                if(data == "true"){
+                    alert("hi");
+                    window.location.href = "./user_profile.html" ;
+                } else {
+                    console.log("Something's wrong with data!");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error occurred. Please try again.');
+            });
+
+        }
+
+    </script>
+
+    
 </body>
 </html>

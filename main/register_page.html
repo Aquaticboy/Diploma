@@ -150,7 +150,12 @@
             .then(response => response.text())
             .then(data => {
                 console.log(data);
-                alert(data);
+                console.log("Is registered: ", data);
+                if(data == "true"){
+                    window.location.href = "./login_page.html";
+                } else {
+                    console.log("Something's wrong with data!");
+                }
             })
             .catch(error => {
                 console.error('Error:', error);

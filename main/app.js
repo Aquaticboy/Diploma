@@ -75,7 +75,8 @@ app.post('/register', (req, res) => {
                     return;
                 }
                 console.log('User registered successfully');
-                res.send('User registered successfully');
+                let is_registered_successfully = true;
+                res.send(is_registered_successfully);
             });
         });
     });
@@ -84,11 +85,41 @@ app.post('/register', (req, res) => {
 
 
 app.post('/login', (req, res) => {
-    const {} = req.body;
+    const { user_login, user_password } = req.body;
 
-    const sql = ``;
+    // Check if user_login is unique
+    const checkUniqueLoginQuery = `SELECT COUNT(*) AS count FROM user_information WHERE user_login = '${user_login}'`;
+    db_connection.query(checkUniqueLoginQuery, (err, result) => {
+        if (err) {
+            console.error("Error checking unique login:", err);
+            res.status(500).send('Error registering user');
+            return;
+        }
 
+        const isLoginUnique = result[0].count === 0;
+        if (!isLoginUnique) {
+            const sql2 = `SELECT user_password AS user_password_from_db FROM user_information WHERE user_login = '${user_login}'`;
+            db_connection.query(sql2, (err1, result1) => {
+                if (err1) {
+                    console.error('Error:', err1);
+                    res.status(500).send('Error!');
+                    return;
+                }
+                if (result1[0].user_password_from_db == user_password){
+                    let is_password_correct = true;
+                    res.send(is_password_correct);
+                } else {
+                    console.log("Something is incorrect!")
+                }
+            });
+        } else {
+            console.error('Login is not registered!');
+            res.status(400).send('Login is not registered!');
+        }
+
+    });
 });
+
 
 
 // Start server
