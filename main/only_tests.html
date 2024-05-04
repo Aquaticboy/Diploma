@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Example</title>
+</head>
+<body>
+    <h1>Session Example</h1>
+    <input type="text" id="testt">
+    <button onclick="setSession()">Set Session</button>
+    <button onclick="getSession()">Get Session</button>
+    <button onclick="clearSession()">Clear Session</button>
+
+    <button onclick="fetchfunction()">fetch</button>
+    <button onclick="fetchfunction2()">fetch2</button>
+    <a href="./only_tests2.html" class="button">Tests2</a>
+
+    <script>
+
+        function fetchfunction(){
+            var body = {
+                user_login: 'testlogin'
+            }
+            fetch("http://localhost:3000/getuserinformation", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+            });
+        }
+
+        function fetchfunction2(){
+            var body = {
+                user_login: 'testlogin'
+            }
+            fetch("http://localhost:3000/getuserinformation", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                const userData = JSON.parse(data);
+                const { user_id, user_name, user_surname, user_login, user_password, user_permition_level } = userData;
+            
+                console.log(user_id, user_name);
+
+                setSession(user_id, user_name, user_surname, user_login, user_password, user_permition_level)
+            
+            });
+
+
+
+
+        }
+
+        
+function setSession(userId, userName, userSurname, userLogin, userPassword, userPermitionLevel) {
+    sessionStorage.setItem("userId", userId);
+    sessionStorage.setItem("userName", userName);
+    sessionStorage.setItem("userSurname", userSurname);
+    sessionStorage.setItem("userLogin", userLogin);
+    sessionStorage.setItem("userPassword", userPassword);
+    sessionStorage.setItem("userPermitionLevel", userPermitionLevel);
+
+    console.log("Session data set.");
+}
+
+// Function to get session data
+function getSession() {
+    for (let i = 0; i < sessionStorage.length; i++) {
+        const key = sessionStorage.key(i);
+        const value = sessionStorage.getItem(key);
+        console.log(`${key}: ${value}`);
+    }
+}
+
+// Function to clear session data
+function clearSession() {
+    // Clear sessionStorage
+    sessionStorage.removeItem("userId");
+    console.log("Session data cleared.");
+}
+    </script>
+</body>
+</html>

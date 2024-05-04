@@ -58,7 +58,7 @@
 
         </div>
 
-
+        
 
     </div>
 </div>
@@ -84,9 +84,47 @@
             })
             .then(response => response.text())
             .then(data => {
-                console.log(data);
+                console.log("Is login and password correct? => ", data);
                 if(data == "true"){
-                    alert("hi");
+                    
+                    //setting js session
+                    
+                    //
+
+
+                    var body1 = {
+                        user_login: userLogin
+                    }
+                    fetch("http://localhost:3000/getuserinformation", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body1)
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        console.log(data);
+                        const userData = JSON.parse(data);
+                        const { user_id, user_name, user_surname, user_login, user_password, user_permition_level } = userData;
+                    
+                        sessionStorage.setItem("userId", user_id);
+                        sessionStorage.setItem("userName", user_name);
+                        sessionStorage.setItem("userSurname", user_surname);
+                        sessionStorage.setItem("userLogin", user_login);
+                        sessionStorage.setItem("userPassword", user_password);
+                        sessionStorage.setItem("userPermitionLevel", user_permition_level);
+
+                        console.log("Session data set.");
+
+                    });
+
+
+                    //
+
+
+
+                    // redirecting user to profile page
                     window.location.href = "./user_profile.html" ;
                 } else {
                     console.log("Something's wrong with data!");

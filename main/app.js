@@ -109,7 +109,8 @@ app.post('/login', (req, res) => {
                     let is_password_correct = true;
                     res.send(is_password_correct);
                 } else {
-                    console.log("Something is incorrect!")
+                    console.log("Something is incorrect!");
+                    is_password_correct = true;
                 }
             });
         } else {
@@ -120,6 +121,22 @@ app.post('/login', (req, res) => {
     });
 });
 
+app.post("/getuserinformation", (req, res) =>{
+    const { user_login } = req.body;
+    const sql = `SELECT * FROM user_information WHERE user_login = ?`;
+    db_connection.query(sql, [user_login], (err, result) =>{
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (result.length > 0) {
+            res.json(result[0]); // Sending back the user information
+        } else {
+            console.log("User not found");
+            res.status(404).json({ error: 'User not found' });
+        }
+    });
+});
 
 
 // Start server
