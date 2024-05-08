@@ -68,14 +68,13 @@
     <div id="user-information-container"></div>
 
 
-
-
 <script>
 
     // Retrieve user information from sessionStorage
 const user_Id = sessionStorage.getItem("userId");
 const user_Name = sessionStorage.getItem("userName");
 const user_Surname = sessionStorage.getItem("userSurname");
+const user_Gender = sessionStorage.getItem("userGender");
 const user_Login = sessionStorage.getItem("userLogin");
 const user_Password = sessionStorage.getItem("userPassword");
 const user_Permition_Level = sessionStorage.getItem("userPermitionLevel");
@@ -93,6 +92,7 @@ if (user_Permition_Level == 1) {
     temp_user_permition_level = 'Не знаю :(';
 }
 
+
 userInformationContainer.innerHTML = `
 
 
@@ -103,7 +103,7 @@ userInformationContainer.innerHTML = `
                     <img class="rounded-circle mt-5" width="150px" src="/images/blank-avatar-photo.jpg"font-weight-bold">
                     Edogaru
                 <span class="text-black-50">Мене звати ${user_Name} ${user_Surname}</span>
-                <span class="text-black-50">Я хлопець/дівчина</span>
+                <span class="text-black-50">Я ${user_Gender}</span>
                 <span class="text-black-50">Хто я? => ${temp_user_permition_level}</span>
                 
                 

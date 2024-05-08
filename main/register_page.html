@@ -86,17 +86,18 @@
                           </div>
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="mt-2 mb-2">
                         <div class="form-check">
                             Стать:<br>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault11" value="Хлопець">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault11" value="Хлопець">
                             <label class="form-check-label" for="flexRadioDefault1">
                               Хлопець
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault22" value="Дівчина">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault22" value="Дівчина">
                             <label class="form-check-label" for="flexRadioDefault2">
                               Дівчина
                             </label>
@@ -142,6 +143,8 @@
                 alert("No radio button is checked.");
             }
 
+            var accSelectedGender = document.querySelector('input[name="flexRadioDefault1"]:checked');
+            
 
             // Get form data
             var accName = document.getElementById("accName").value;
@@ -157,6 +160,7 @@
             var body = {
                 user_name: accName,
                 user_surname: accSurname,
+                user_gender: accSelectedGender.value,
                 user_login: accLogin,
                 user_password: accPassword,
                 user_permition_level: accPermitionLevel

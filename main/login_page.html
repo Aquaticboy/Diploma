@@ -99,14 +99,14 @@ function send_login_request() {
             .then(data => {
                 console.log(data);
                 const userData = JSON.parse(data);
-                const { user_id, user_name, user_surname, user_login, user_password, user_permition_level } = userData;
+                const { user_id, user_name, user_surname, user_gender, user_login, user_password, user_permition_level } = userData;
                 
                 // Set session data
-                //setSession(user_id, user_name, user_surname, user_login, user_password, user_permition_level);
                 console.log(sessionStorage.getItem("userName"));
                 sessionStorage.setItem("userId", user_id);
                 sessionStorage.setItem("userName", user_name);
                 sessionStorage.setItem("userSurname", user_surname);
+                sessionStorage.setItem("userGender", user_gender);
                 sessionStorage.setItem("userLogin", user_login);
                 sessionStorage.setItem("userPassword", user_password);
                 sessionStorage.setItem("userPermitionLevel", user_permition_level);

@@ -49,7 +49,7 @@ db_connection.connect((err) => {
 
 // Handle POST requests to /register
 app.post('/register', (req, res) => {
-    const { user_name, user_surname, user_login, user_password, user_permition_level } = req.body;
+    const { user_name, user_surname, user_gender, user_login, user_password, user_permition_level } = req.body;
 
     // Check if user_login is unique
     const checkUniqueLoginQuery = `SELECT COUNT(*) AS count FROM user_information WHERE user_login = ?`;
@@ -79,8 +79,8 @@ app.post('/register', (req, res) => {
 
             const user_ID = results && results.length > 0 ? results[0].max_user_id + 1 : 1;
 
-            const insertUserQuery = `INSERT INTO user_information (user_id, user_name, user_surname, user_login, user_password, user_permition_level) VALUES (?, ?, ?, ?, ?, ?)`;
-            db_connection.query(insertUserQuery, [user_ID, user_name, user_surname, user_login, user_password, user_permition_level], (err, result) => {
+            const insertUserQuery = `INSERT INTO user_information (user_id, user_name, user_surname, user_gender, user_login, user_password, user_permition_level) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+            db_connection.query(insertUserQuery, [user_ID, user_name, user_surname, user_gender, user_login, user_password, user_permition_level], (err, result) => {
                 if (err) {
                     console.error('Error inserting user:', err);
                     res.status(500).send('Error registering user');
