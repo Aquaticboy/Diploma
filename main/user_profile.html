@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="./session_control.js"></script>
 
 </head>
 <body>
@@ -52,9 +53,9 @@
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                       <li><a class="dropdown-item" href="./user_profile.html">Profile</a></li>
-                      <li><a class="dropdown-item" href="#">Settings</a></li>
+                      <li><a class="dropdown-item" href="./profile_settings.html">Settings</a></li>
                       <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="./login_page.html">Sign out</a></li>
+                      <li><a class="dropdown-item" onclick="clearSession()" href="./login_page.html">Sign out</a></li>
                     </ul>
                   </div>
 
@@ -64,104 +65,162 @@
         </div>
     </nav>
 
+    <div id="user-information-container"></div>
 
 
 
 
+<script>
+
+    // Retrieve user information from sessionStorage
+const user_Id = sessionStorage.getItem("userId");
+const user_Name = sessionStorage.getItem("userName");
+const user_Surname = sessionStorage.getItem("userSurname");
+const user_Login = sessionStorage.getItem("userLogin");
+const user_Password = sessionStorage.getItem("userPassword");
+const user_Permition_Level = sessionStorage.getItem("userPermitionLevel");
+
+// Display user information on the webpage
+const userInformationContainer = document.getElementById('user-information-container');
+
+if (user_Permition_Level == 1) {
+    temp_user_permition_level = 'Учень';
+} else if (user_Permition_Level == 2) {
+    temp_user_permition_level = 'Вчитель';
+} else if (user_Permition_Level == 3) {
+    temp_user_permition_level = 'Адміністратор';
+} else {
+    temp_user_permition_level = 'Не знаю :(';
+}
+
+userInformationContainer.innerHTML = `
 
 
+<div class="container rounded bg-white mt-1 mb-5">
+        <div class="row">
+            <div class="col-md-12 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" width="150px" src="/images/blank-avatar-photo.jpg"font-weight-bold">
+                    Edogaru
+                <span class="text-black-50">Мене звати ${user_Name} ${user_Surname}</span>
+                <span class="text-black-50">Я хлопець/дівчина</span>
+                <span class="text-black-50">Хто я? => ${temp_user_permition_level}</span>
+                
+                
+                
+                </div>
+            </div>
+        </div>
+    </div>
+`;
+</script>
+
+
+<!--
 
     <div class="container rounded bg-white mt-1 mb-5">
         <div class="row">
-            <div class="col-md-3 border-right">
+            <div class="col-md-12 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle mt-5" width="150px" src="/images/blank-avatar-photo.jpg"font-weight-bold">
                     <button class="btn btn-primary profile-button" type="button">Update picture</button>
                     Edogaru
                 <span class="text-black-50">edogaru@mail.com.my</span>
-                <span class="text-black-50">Учень: 7-Б/Вчитель</span></div>
-            </div>
-
-            <div class="col-md-5 border-right">
-                <div class="p-3 py-1">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                        
-                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
-                        <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
-                    </div>
-                    <div class="mt-2 text-center">
-                        <button class="btn btn-primary profile-button" type="button">Save Profile</button>
-                    </div>
+                <span class="text-black-50">Учень: 7-Б/Вчитель</span>
                 </div>
             </div>
-
         </div>
     </div>
-    </div>
-    </div>
 
-
+-->
 
 <table class="table table-striped">
+
     <thead>
         <tr>
-            <th scope="col">Number</th>
-            <th scope="col">Name</th>
+            <th scope="col">attempt id</th>
+            <th scope="col">user</th>
+            <th scope="col">topic test id</th>
+            <th scope="col">result</th>
+
         </tr>
     </thead>
     
     <tbody>
         <tr>
-    
-    
             <td>1</td>
             <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td> 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td> 
+        </tr>
 
-            
-            <td>1</td>
-            <td>1</td>            
-        
-        
-        </tr>
-        <tr>
-        
-        
-            <td>1</td>
-            <td>1</td>
-            
-        
-        
-        </tr>
-        <tr>
-        
-        
-            <td>1</td>
-            <td>1</td>
-            
-        
-        
-        </tr>
+
     </tbody>
-
-
-
 </table>
 
     
-    
-        <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+    <br>
+        <footer id="sticky-footer" class="footer mt-auto flex-shrink-0 py-4 bg-dark text-white-50">
           <div class="container text-center">
             <small>Copyright &copy; Easy English</small>
           </div>

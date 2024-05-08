@@ -8,7 +8,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="./css/style.css">
 
 </head>
 <body>
@@ -65,77 +65,67 @@
 
     <script>
 
-        function send_login_request(){
-        
-            let userPassword = document.getElementById("input_userPassword").value;
-            let userLogin = document.getElementById("input_userLogin").value;
+function send_login_request() {
+    let userPassword = document.getElementById("input_userPassword").value;
+    let userLogin = document.getElementById("input_userLogin").value;
 
-            var body = {
-                user_login: userLogin,
-                user_password: userPassword
-            }
+    var body = {
+        user_login: userLogin,
+        user_password: userPassword
+    };
 
-            fetch("http://localhost:3000/login", {
+    fetch("http://localhost:3000/login", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log("Is login and password correct? => ", data);
+        if (data == "true") {
+            var body1 = {
+                user_login: userLogin
+            };
+            fetch("http://localhost:3000/getuserinformation", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(body)
+                body: JSON.stringify(body1)
             })
             .then(response => response.text())
             .then(data => {
-                console.log("Is login and password correct? => ", data);
-                if(data == "true"){
-                    
-                    //setting js session
-                    
-                    //
+                console.log(data);
+                const userData = JSON.parse(data);
+                const { user_id, user_name, user_surname, user_login, user_password, user_permition_level } = userData;
+                
+                // Set session data
+                //setSession(user_id, user_name, user_surname, user_login, user_password, user_permition_level);
+                console.log(sessionStorage.getItem("userName"));
+                sessionStorage.setItem("userId", user_id);
+                sessionStorage.setItem("userName", user_name);
+                sessionStorage.setItem("userSurname", user_surname);
+                sessionStorage.setItem("userLogin", user_login);
+                sessionStorage.setItem("userPassword", user_password);
+                sessionStorage.setItem("userPermitionLevel", user_permition_level);
 
-
-                    var body1 = {
-                        user_login: userLogin
-                    }
-                    fetch("http://localhost:3000/getuserinformation", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(body1)
-                    })
-                    .then(response => response.text())
-                    .then(data => {
-                        console.log(data);
-                        const userData = JSON.parse(data);
-                        const { user_id, user_name, user_surname, user_login, user_password, user_permition_level } = userData;
-                    
-                        sessionStorage.setItem("userId", user_id);
-                        sessionStorage.setItem("userName", user_name);
-                        sessionStorage.setItem("userSurname", user_surname);
-                        sessionStorage.setItem("userLogin", user_login);
-                        sessionStorage.setItem("userPassword", user_password);
-                        sessionStorage.setItem("userPermitionLevel", user_permition_level);
-
-                        console.log("Session data set.");
-
-                    });
-
-
-                    //
-
-
-
-                    // redirecting user to profile page
-                    window.location.href = "./user_profile.html" ;
-                } else {
-                    console.log("Something's wrong with data!");
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error occurred. Please try again.');
+                console.log("Session data set.");
+                console.log(sessionStorage.getItem("userName"));
+                // Redirect user to profile page after setting session
+                window.location.href = "./user_profile.html";
             });
-
+        } else {
+            console.log("Something's wrong with data!");
         }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error occurred. Please try again.');
+    });
+}
+
 
     </script>
 

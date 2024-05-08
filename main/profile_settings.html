@@ -6,9 +6,11 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/style.css">
 
 </head>
 <body>
+   
     <nav
         class="navbar navbar-expand-sm navbar-dark bg-dark"
     >
@@ -29,7 +31,7 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="./index.html" aria-current="page"
+                        <a class="nav-link" href="./index.html" aria-current="page"
                             >Home
                             <span class="visually-hidden">(current)</span></a
                         >
@@ -41,6 +43,9 @@
                         <a class="nav-link" href="./test-for-quiz.html">Test for quiz</a>
                     </li>
                 </ul>
+
+
+            
                 <div class="flex-shrink-0 dropdown">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                       <img src="/images/blank-avatar-photo.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -49,53 +54,56 @@
                       <li><a class="dropdown-item" href="./user_profile.html">Profile</a></li>
                       <li><a class="dropdown-item" href="#">Settings</a></li>
                       <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Sign out</a></li>
+                      <li><a class="dropdown-item" href="./login_page.html">Sign out</a></li>
                     </ul>
                   </div>
+
+
             </div>
+
         </div>
     </nav>
+
+            <div class="col-md-12 border-right">
+                <div class="p-3 py-1">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
+                        
+                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
+                        <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
+                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                    </div>
+                    <div class="mt-2 text-center">
+                        <button class="btn btn-primary profile-button" type="button">Save Profile</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+
     
-    <div class="container">
-        <div class="row py-5">
-            <div class="col-md-9">
-                <div class="lc-block">
-                    <div editable="rich">
+   
+        <footer id="sticky-footer" class="footer w-100 position-absolute top-100 start-50 translate-middle flex-shrink-0 py-4 bg-dark text-white-50">
+          <div class="container text-center">
+            <small>Copyright &copy; Easy English</small>
+          </div>
+        </footer>
 
-                        <h2><strong>Simple Call to action</strong></h2>
+<script>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a lacus est. Etiam diam metus, lobortis non augue at, placerat viverra risus. Cras ornare faucibus laoreet. Aenean vel nisi in ipsum congue.</p>
-                    </div>
-                </div><!-- /lc-block -->
-            </div><!-- /col -->
-            <div class="col-md-3 align-self-center text-center">
-                <div class="lc-block">
-                    <a class="btn btn-link btn-lg" href="#" role="button">Call to action</a>
-                </div><!-- /lc-block -->
-            </div><!-- /col -->
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row py-5">
-            <div class="col-md-9">
-                <div class="lc-block">
-                    <div editable="rich">
-
-                        <h2><strong>Simple Call to action</strong></h2>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a lacus est. Etiam diam metus, lobortis non augue at, placerat viverra risus. Cras ornare faucibus laoreet. Aenean vel nisi in ipsum congue.</p>
-                    </div>
-                </div><!-- /lc-block -->
-            </div><!-- /col -->
-            <div class="col-md-3 align-self-center text-center">
-                <div class="lc-block">
-                    <a class="btn btn-link btn-lg" href="#" role="button">Call to action</a>
-                </div><!-- /lc-block -->
-            </div><!-- /col -->
-        </div>
-    </div>
-
-
+</script>
 </body>
 </html>

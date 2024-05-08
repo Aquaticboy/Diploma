@@ -35,6 +35,18 @@ db_connection.connect((err) => {
     console.log('Connected to MySQL database');
 });
 
+
+
+//Functions
+
+
+
+
+
+
+
+//Requests
+
 // Handle POST requests to /register
 app.post('/register', (req, res) => {
     const { user_name, user_surname, user_login, user_password, user_permition_level } = req.body;
@@ -75,8 +87,7 @@ app.post('/register', (req, res) => {
                     return;
                 }
                 console.log('User registered successfully');
-                let is_registered_successfully = true;
-                res.send(is_registered_successfully);
+                res.send("true");
             });
         });
     });
