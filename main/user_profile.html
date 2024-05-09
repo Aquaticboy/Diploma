@@ -46,10 +46,11 @@
                 </ul>
 
 
+
             
                 <div class="flex-shrink-0 dropdown">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="/images/blank-avatar-photo.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+                      <img id="nav-profile-picture" src="" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                       <li><a class="dropdown-item" href="./user_profile.html">Profile</a></li>
@@ -65,6 +66,7 @@
         </div>
     </nav>
 
+
     <div id="user-information-container"></div>
 
 
@@ -78,6 +80,16 @@ const user_Gender = sessionStorage.getItem("userGender");
 const user_Login = sessionStorage.getItem("userLogin");
 const user_Password = sessionStorage.getItem("userPassword");
 const user_Permition_Level = sessionStorage.getItem("userPermitionLevel");
+
+
+let tempVariableForPicture;
+
+if (user_Gender === "Хлопець") {
+    tempVariableForPicture = "/images/male_pic.jpg";
+} else if (user_Gender === "Дівчина") {
+    tempVariableForPicture = "/images/female_pic.jpg";
+}
+
 
 // Display user information on the webpage
 const userInformationContainer = document.getElementById('user-information-container');
@@ -100,11 +112,10 @@ userInformationContainer.innerHTML = `
         <div class="row">
             <div class="col-md-12 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5" width="150px" src="/images/blank-avatar-photo.jpg"font-weight-bold">
+                    <img id="profilePicture" class="rounded-circle mt-5" width="150px" src="${tempVariableForPicture}" alt="Profile Picture">
                     Edogaru
-                <span class="text-black-50">Мене звати ${user_Name} ${user_Surname}</span>
-                <span class="text-black-50">Я ${user_Gender}</span>
-                <span class="text-black-50">Хто я? => ${temp_user_permition_level}</span>
+                <span class="text-black-50">Мене звати ${user_Name} ${user_Surname}</span>\
+                <span class="text-black-50">Я ${temp_user_permition_level}</span>
                 
                 
                 
@@ -113,6 +124,10 @@ userInformationContainer.innerHTML = `
         </div>
     </div>
 `;
+
+
+    // Set the src attribute of the image element
+    document.getElementById("nav-profile-picture").src = tempVariableForPicture;
 </script>
 
 
