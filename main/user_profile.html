@@ -68,7 +68,7 @@
 
 
     <div id="user-information-container"></div>
-
+    <div id="table-user-attempts"></div>
 
 <script>
 
@@ -80,15 +80,7 @@ const user_Gender = sessionStorage.getItem("userGender");
 const user_Login = sessionStorage.getItem("userLogin");
 const user_Password = sessionStorage.getItem("userPassword");
 const user_Permition_Level = sessionStorage.getItem("userPermitionLevel");
-
-
-let tempVariableForPicture;
-
-if (user_Gender === "Хлопець") {
-    tempVariableForPicture = "/images/male_pic.jpg";
-} else if (user_Gender === "Дівчина") {
-    tempVariableForPicture = "/images/female_pic.jpg";
-}
+const profile_Picture_Path = sessionStorage.getItem("profilePicturePath");
 
 
 // Display user information on the webpage
@@ -112,7 +104,7 @@ userInformationContainer.innerHTML = `
         <div class="row">
             <div class="col-md-12 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img id="profilePicture" class="rounded-circle mt-5" width="150px" src="${tempVariableForPicture}" alt="Profile Picture">
+                    <img id="profilePicture" class="rounded-circle mt-5" width="150px" src="${profile_Picture_Path}" alt="Profile Picture">
                     Edogaru
                 <span class="text-black-50">Мене звати ${user_Name} ${user_Surname}</span>\
                 <span class="text-black-50">Я ${temp_user_permition_level}</span>
@@ -125,113 +117,104 @@ userInformationContainer.innerHTML = `
     </div>
 `;
 
+var body_for_fetch1 = {
+    user_ID: user_Id
+}
 
-    // Set the src attribute of the image element
-    document.getElementById("nav-profile-picture").src = tempVariableForPicture;
+fetch("http://localhost:3000/getUserAttemptsToPassTopicTestInformation", {
+    method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body_for_fetch1)
+})
+.then(response => response.text())
+.then(data => {
+console.log(data);
+
+
+
+})
+
+
+
+//
+
+
+
+// Function to fetch data and populate the table
+
+    var body_for_fetch1 = {
+        user_ID: user_Id
+    }
+
+    fetch("http://localhost:3000/getUserAttemptsToPassTopicTestInformation", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body_for_fetch1)
+    })
+    .then(response => response.json())
+    .then(data => {
+        populateTable(data);
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+
+// Function to populate the table with the fetched data
+function populateTable(data) {
+    var table = document.querySelector('.table tbody');
+
+    // Clear existing rows
+    table.innerHTML = '';
+
+    // Populate table with new data
+    data.forEach(rowData => {
+        var row = table.insertRow();
+        row.insertCell().textContent = rowData.attempt_id;
+        row.insertCell().textContent = rowData.topic_test_id;
+        row.insertCell().textContent = rowData.attempt_result;
+    });
+}
+
+
+
+
+
+
+//
+
+    // Set the src attribute of nav's the image element
+    document.getElementById("nav-profile-picture").src = profile_Picture_Path;
 </script>
 
 
-<!--
-
-    <div class="container rounded bg-white mt-1 mb-5">
-        <div class="row">
-            <div class="col-md-12 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5" width="150px" src="/images/blank-avatar-photo.jpg"font-weight-bold">
-                    <button class="btn btn-primary profile-button" type="button">Update picture</button>
-                    Edogaru
-                <span class="text-black-50">edogaru@mail.com.my</span>
-                <span class="text-black-50">Учень: 7-Б/Вчитель</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
--->
-
 <table class="table table-striped">
-
     <thead>
         <tr>
-            <th scope="col">attempt id</th>
-            <th scope="col">user</th>
-            <th scope="col">topic test id</th>
-            <th scope="col">result</th>
-
+            <th>
+                attempt id
+            </th>
+            <th>
+                topic test id
+            </th>
+            <th>
+                attempt result
+            </th>
         </tr>
     </thead>
-    
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td> 
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td> 
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td> 
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td> 
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td> 
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td> 
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td> 
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td> 
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td> 
-        </tr>
-
-
+    <tbody class="table">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
     </tbody>
 </table>
+
 
     
     <br>

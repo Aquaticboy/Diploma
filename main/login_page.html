@@ -111,6 +111,16 @@ function send_login_request() {
                 sessionStorage.setItem("userPassword", user_password);
                 sessionStorage.setItem("userPermitionLevel", user_permition_level);
 
+                let tempVariableForPicture;
+
+                if (user_gender === "Хлопець") {
+                    tempVariableForPicture = "/images/male_pic.jpg";
+                } else if (user_gender === "Дівчина") {
+                    tempVariableForPicture = "/images/female_pic.jpg";
+                }
+
+                sessionStorage.setItem("profilePicturePath", tempVariableForPicture);
+
                 console.log("Session data set.");
                 console.log(sessionStorage.getItem("userName"));
                 // Redirect user to profile page after setting session

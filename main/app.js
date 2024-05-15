@@ -149,6 +149,25 @@ app.post("/getuserinformation", (req, res) =>{
     });
 });
 
+app.post("/getUserAttemptsToPassTopicTestInformation", (req, res) => {
+    const { user_ID } = req.body;
+    const sql = `SELECT * FROM attempts_to_pass_topic_test WHERE user_id = ?`;
+    db_connection.query(sql, [user_ID], (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (result.length > 0) {
+            res.json(result);
+        } else {
+            console.log("Attempts not found");
+            res.status(404).json({ error: 'Attempts not found' });
+        }
+
+    });
+
+});
+
 
 // Start server
 app.listen(port, () => {

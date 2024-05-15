@@ -10,7 +10,7 @@
 </head>
 <body>
     
-    <div id="user-information-container"></div>
+    <div id="userInformationContainer"></div>
 
 <script>
     const userInformation = {
@@ -26,6 +26,7 @@
 Object.keys(userInformation).forEach(key => {
   sessionStorage.setItem(key, userInformation[key]);
 });
+
 // Retrieve user information from sessionStorage
 const userId = sessionStorage.getItem("user_id");
 const userName = sessionStorage.getItem("user_name");
@@ -34,43 +35,16 @@ const userLogin = sessionStorage.getItem("user_login");
 const userPassword = sessionStorage.getItem("user_password");
 const userPermitionLevel = sessionStorage.getItem("user_permition_level");
 
-// Display user information on the webpage
-const userInformationContainer = document.getElementById('user-information-container');
-
-if (userPermitionLevel == 1) {
-    temp_user_permition_level = 'Учень';
-} else if (userPermitionLevel == 2) {
-    temp_user_permition_level = 'Вчитель';
-} else if (userPermitionLevel == 3) {
-    temp_user_permition_level = 'Адміністратор';
-} else {
-    temp_user_permition_level = 'Не знаю :(';
-}
 
 userInformationContainer.innerHTML = `
+<p>Hello!</p>
 
-
-<div class="container rounded bg-white mt-1 mb-5">
-        <div class="row">
-            <div class="col-md-12 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5" width="150px" src="/images/blank-avatar-photo.jpg"font-weight-bold">
-                    <button class="btn btn-primary profile-button" type="button">Update picture</button>
-                    Edogaru
-                <span class="text-black-50">User Name: ${userName}</span>
-                <span class="text-black-50">User Surname: ${userSurname}</span>
-                <span class="text-black-50">Хто я?: ${temp_user_permition_level}</span>
-                
-                
-                
-                </div>
-            </div>
-        </div>
-    </div>
 `;
+
+userInformationContainer.innerHTML = userInformationContainer.innerHTML + userInformationContainer.innerHTML;
+
 </script>
 
-<img src="/images/" alt="">
 
 </body>
 </html>
