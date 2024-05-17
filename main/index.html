@@ -41,60 +41,89 @@
                         <a class="nav-link" href="./test-for-quiz.html">Test for quiz</a>
                     </li>
                 </ul>
+
                 <div class="flex-shrink-0 dropdown">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="/images/blank-avatar-photo.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+                      <img id="nav-profile-picture" src="" alt="mdo" width="64" height="64" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                       <li><a class="dropdown-item" href="./user_profile.html">Profile</a></li>
-                      <li><a class="dropdown-item" href="#">Settings</a></li>
+                      <li><a class="dropdown-item" href="./profile_settings.html">Settings</a></li>
                       <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Sign out</a></li>
+                      <li><a class="dropdown-item" onclick="clearSession()" href="./login_page.html">Sign out</a></li>
                     </ul>
                   </div>
             </div>
         </div>
     </nav>
     
-    <div class="container">
+
+    <script>
+
+const user_Id = sessionStorage.getItem("userId");
+const user_Name = sessionStorage.getItem("userName");
+const user_Surname = sessionStorage.getItem("userSurname");
+const user_Gender = sessionStorage.getItem("userGender");
+const user_Login = sessionStorage.getItem("userLogin");
+const user_Password = sessionStorage.getItem("userPassword");
+const user_Permition_Level = sessionStorage.getItem("userPermitionLevel");
+const profile_Picture_Path = sessionStorage.getItem("profilePicturePath");
+
+document.getElementById("nav-profile-picture").src = profile_Picture_Path;
+
+
+fetch("http://localhost:3000/getAllTopicInformation", {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+})
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+    populateCallToAction(data);
+
+})
+.catch(error =>{
+    console.error('Error fetching data:', error);
+});
+
+function populateCallToAction(data) {
+    var callToAction_div = document.getElementById('call-to-action');
+    
+    data.forEach(CTAelement => {
+        callToAction_div.innerHTML += `
+        
+        <div class="container">
         <div class="row py-5">
             <div class="col-md-9">
                 <div class="lc-block">
                     <div editable="rich">
 
-                        <h2><strong>Simple Call to action</strong></h2>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a lacus est. Etiam diam metus, lobortis non augue at, placerat viverra risus. Cras ornare faucibus laoreet. Aenean vel nisi in ipsum congue.</p>
+                        <h2><strong>${CTAelement.topic_name}</strong></h2>
+                        <p>${CTAelement.topic_description}</p>
+                        <p>Створено користувачем: ${CTAelement.topic_creator_information}</p>
                     </div>
-                </div><!-- /lc-block -->
-            </div><!-- /col -->
+                </div>
+            </div>
             <div class="col-md-3 align-self-center text-center">
                 <div class="lc-block">
-                    <a class="btn btn-link btn-lg" href="#" role="button">Call to action</a>
-                </div><!-- /lc-block -->
-            </div><!-- /col -->
+                    <a class="btn btn-link btn-lg" href="./index1.html?topicInformationId=${CTAelement.topic_id}" role="button">Call to action</a>
+                </div>
+            </div>
         </div>
     </div>
+        
+        `;
+    });
 
-    <div class="container">
-        <div class="row py-5">
-            <div class="col-md-9">
-                <div class="lc-block">
-                    <div editable="rich">
 
-                        <h2><strong>Simple Call to action</strong></h2>
+}
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a lacus est. Etiam diam metus, lobortis non augue at, placerat viverra risus. Cras ornare faucibus laoreet. Aenean vel nisi in ipsum congue.</p>
-                    </div>
-                </div><!-- /lc-block -->
-            </div><!-- /col -->
-            <div class="col-md-3 align-self-center text-center">
-                <div class="lc-block">
-                    <a class="btn btn-link btn-lg" href="#" role="button">Call to action</a>
-                </div><!-- /lc-block -->
-            </div><!-- /col -->
-        </div>
-    </div>
+    </script>
+
+<div id="call-to-action"></div>
+
 
 
 </body>

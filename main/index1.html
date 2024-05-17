@@ -11,65 +11,98 @@
 </head>
 <body>
    
-    <nav
-        class="navbar navbar-expand-sm navbar-dark bg-dark"
-    >
-        <div class="container">
-            <a class="navbar-brand" href="#">Easy English</a>
-            <button
-                class="navbar-toggler d-lg-none"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapsibleNavId"
-                aria-controls="collapsibleNavId"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-                aria-current="page"
-                >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="./index.html" aria-current="page"
-                            >Home
-                            <span class="visually-hidden">(current)</span></a
-                        >
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="./index1.html">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./test-for-quiz.html">Test for quiz</a>
-                    </li>
-                </ul>
+    <!-- <nav>
+        <ul>
+            <a href="./index.html" ><p class="fs-3 text"><-- back</p></a>
+        </ul>
+        <hr>
+    </nav> -->
+    <a href="./index.html" style="margin: 10px; display: inline-block;">
+        <i class="bi bi-arrow-left-square-fill"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+            <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1"/>
+        </svg>
+    </a>
+    
+
+
+<div id="topic-main-information"></div>
 
 
 
+<script>
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
 
-                            
-            <div class="flex-shrink-0 dropdown">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="/images/blank-avatar-photo.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
-                </a>
-                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                  <li><a class="dropdown-item" href="./user_profile.html">Profile</a></li>
-                  <li><a class="dropdown-item" href="#">Settings</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
-              </div>
-            </div>
-        </div>
-    </nav>
+    var TopicId = getParameterByName('topicInformationId');
+    console.log(TopicId);
+
+    var body_for_fetch = {
+        topicId: TopicId
+    }
+
+    fetch("http://localhost:3000/getInformationForTopicPage", {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body_for_fetch)
+    })
+    .then(response => response.json())
+    .then(data => {        
+        console.log(data);
+        const topicData = data[0];
+        console.log(topicData);
 
 
+        const { topic_id, topic_name, topic_description, topic_creator_information, topic_main_information, topic_test_id } = topicData;
 
 
+        var div_mainInformation = document.getElementById('topic-main-information');
 
+        div_mainInformation.innerHTML=`
+            
+<figure class="text-center">
+    <blockquote class="blockquote">
+        <h1>${topic_name}</h1>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+        Topic created by <cite title="Source Title">${topic_creator_information}</cite>
+    </figcaption>
+</figure>
 
+<div class="container">
+  <div class="row">
+    <div class="col-1" >
+    </div>
+    <div class="col-10">
+      ${topic_main_information}
+    </div>
+    <div class="col-1">
+    </div>
+  </div>
+<hr>
 
+<div class="d-grid gap-2">
+  <button class="btn btn-primary" style="position:fixed;bottom:0;left:0;right:0;height:50px;" type="button">Пройти тестування</button>
+</div>
 
+        `;
+
+        
+    })
+    .catch(error =>{
+        console.error('Error fetching data:', error);
+    });
+
+</script>
     
 
 

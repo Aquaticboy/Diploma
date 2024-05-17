@@ -130,7 +130,6 @@
     
 <script>
     function registerUser() {
-            //Get value from acrive radio
             var accPermitionLevel_radionValue = document.querySelector('input[name="flexRadioDefault"]:checked');
 
             if (accPermitionLevel_radionValue) {
@@ -145,18 +144,12 @@
 
             var accSelectedGender = document.querySelector('input[name="flexRadioDefault1"]:checked');
             
-
-            // Get form data
             var accName = document.getElementById("accName").value;
             var accSurname = document.getElementById("accSurname").value;
             var accLogin = document.getElementById("accLogin").value;
             var accPassword = document.getElementById("accPassword").value;
 
 
-
-
-
-            // Create request body
             var body = {
                 user_name: accName,
                 user_surname: accSurname,
@@ -166,7 +159,6 @@
                 user_permition_level: accPermitionLevel
             };
 
-            // Send AJAX request
             fetch('http://localhost:3000/register', {
                 method: 'POST',
                 headers: {

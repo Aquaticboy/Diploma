@@ -37,17 +37,8 @@ db_connection.connect((err) => {
 
 
 
-//Functions
 
 
-
-
-
-
-
-//Requests
-
-// Handle POST requests to /register
 app.post('/register', (req, res) => {
     const { user_name, user_surname, user_gender, user_login, user_password, user_permition_level } = req.body;
 
@@ -168,6 +159,44 @@ app.post("/getUserAttemptsToPassTopicTestInformation", (req, res) => {
 
 });
 
+app.post("/getAllTopicInformation", (req, res) => {
+    const sql = `SELECT * FROM topic_information`;
+    db_connection.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (result.length > 0) {
+            res.json(result);
+        } else {
+            console.log("Topics not found");
+            res.status(404).json({ error: 'Attempts not found' });
+        }
+
+    });
+
+
+});
+
+app.post("/getInformationForTopicPage", (req, res) =>{
+    const { topicId } = req.body;
+    const sql = `SELECT * FROM topic_information WHERE topic_id = ?`;
+    db_connection.query(sql, [topicId], (err, result) =>{
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (result.length > 0) {
+            res.json(result);
+        } else {
+            console.log("Topics not found");
+            res.status(404).json({ error: 'Attempts not found' });
+        }
+    });
+
+
+    
+});
 
 // Start server
 app.listen(port, () => {
