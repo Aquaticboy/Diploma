@@ -198,6 +198,25 @@ app.post("/getInformationForTopicPage", (req, res) =>{
     
 });
 
+
+app.post("/getTopicTest", (req, res) =>{
+    const { topicTestId } = req.body;
+
+    const sql = `SELECT * FROM topic_test_information WHERE topic_test_id = ?`;
+    db_connection.query(sql, [topicTestId], (err, result) =>{
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (result.length > 0) {
+            res.json(result);
+        } else {
+            console.log("Test not found");
+            res.status(404).json({ error: 'Test not found' });
+        }
+    });
+
+});
 // Start server
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
