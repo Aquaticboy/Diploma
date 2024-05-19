@@ -293,7 +293,24 @@ async function checkAnswers() {
     var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
     modal.show();
 
+    var userId = sessionStorage.getItem("userId");
+    var TopicTestId_forFetch = getParameterByName('topicTestId');
+
+    var bodyForFetch={
+        user_id: userId,
+        topic_test_id: TopicTestId_forFetch,
+        attempt_result: correctAnswers
+    }
+
     
+    fetch("http://localhost:3000/sendTestAttempt", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bodyForFetch)
+        });
+
 }
 
 

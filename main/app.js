@@ -217,6 +217,36 @@ app.post("/getTopicTest", (req, res) =>{
     });
 
 });
+
+app.post("/sendTestAttempt", (req, res) => {
+    const { user_id, topic_test_id, attempt_result } = req.body;
+    console.log("attempts to send 1");
+    // Query to get the maximum attempt_id
+    const getMaxAttemptIdQuery = `SELECT MAX(attempt_id) AS max_attempt_id FROM attempts_to_pass_topic_test`;
+
+    db_connection.query(getMaxAttemptIdQuery, (err, results) => {
+        if (err) {
+            console.error("Error executing query to get max attempt ID:", err);
+            res.status(500).send('Error registering user');
+            return;
+        }
+        console.log("attempts to send 2");
+        const attempt_id = results && results.length > 0 && results[0].max_attempt_id !== null ? results[0].max_attempt_id + 1 : 1;
+
+        const insertAttemptQuery = `INSERT INTO attempts_to_pass_topic_test (attempt_id, user_id, topic_test_id, attempt_result) VALUES (?, ?, ?, ?)`;
+        db_connection.query(insertAttemptQuery, [attempt_id, user_id, topic_test_id, attempt_result], (err, result) => {
+            if (err) {
+                console.error('Error inserting attempt:', err);
+                res.status(500).send('Error inserting attempt');
+                return;
+            }
+            console.log('Attempt inserted successfully');
+            res.status(200).send('Attempt inserted successfully');
+        });
+    });
+});
+
+
 // Start server
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
