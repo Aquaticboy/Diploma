@@ -140,6 +140,23 @@ app.post("/getuserinformation", (req, res) =>{
     });
 });
 
+app.post("/getuserinformationbyid", (req, res) =>{
+    const { user_id } = req.body;
+    const sql = `SELECT * FROM user_information WHERE user_id = ?`;
+    db_connection.query(sql, [user_id], (err, result) =>{
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        if (result.length > 0) {
+            res.json(result[0]); // Sending back the user information
+        } else {
+            console.log("User not found");
+            res.status(404).json({ error: 'User not found' });
+        }
+    });
+});
+
 app.post("/getUserAttemptsToPassTopicTestInformation", (req, res) => {
     const { user_ID } = req.body;
     const sql = `SELECT * FROM attempts_to_pass_topic_test WHERE user_id = ?`;
@@ -220,7 +237,6 @@ app.post("/getTopicTest", (req, res) =>{
 
 app.post("/sendTestAttempt", (req, res) => {
     const { user_id, topic_test_id, attempt_result } = req.body;
-    console.log("attempts to send 1");
     // Query to get the maximum attempt_id
     const getMaxAttemptIdQuery = `SELECT MAX(attempt_id) AS max_attempt_id FROM attempts_to_pass_topic_test`;
 
@@ -230,7 +246,6 @@ app.post("/sendTestAttempt", (req, res) => {
             res.status(500).send('Error registering user');
             return;
         }
-        console.log("attempts to send 2");
         const attempt_id = results && results.length > 0 && results[0].max_attempt_id !== null ? results[0].max_attempt_id + 1 : 1;
 
         const insertAttemptQuery = `INSERT INTO attempts_to_pass_topic_test (attempt_id, user_id, topic_test_id, attempt_result) VALUES (?, ?, ?, ?)`;

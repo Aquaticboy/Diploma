@@ -57,8 +57,9 @@
         </div>
     </nav>
     
-
-    <script>
+    <div id="create-topic"></div>
+    
+<script>
 
 const user_Id = sessionStorage.getItem("userId");
 const user_Name = sessionStorage.getItem("userName");
@@ -70,6 +71,15 @@ const user_Permition_Level = sessionStorage.getItem("userPermitionLevel");
 const profile_Picture_Path = sessionStorage.getItem("profilePicturePath");
 
 document.getElementById("nav-profile-picture").src = profile_Picture_Path;
+
+//check user's permition level and add button
+if(user_Permition_Level == 2 || user_Permition_Level == 3){
+    var create_topic_div = document.getElementById("create-topic");
+    create_topic_div.innerHTML=`
+    <a style="margin-left: 40%; margin-right: 40%; margin-top: 10px;" class="btn btn-primary" href="./create_topic_and_test_page.html" role="button">Створити тему та тестування</a>
+    `;
+}
+
 
 
 fetch("http://localhost:3000/getAllTopicInformation", {
@@ -91,7 +101,23 @@ fetch("http://localhost:3000/getAllTopicInformation", {
 function populateCallToAction(data) {
     var callToAction_div = document.getElementById('call-to-action');
     
-    data.forEach(CTAelement => {
+
+    const body_togetuserinformation_fetch = {
+        user_id: user_Id
+    }
+
+    fetch("http://localhost:3000/getuserinformationbyid", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body_togetuserinformation_fetch)
+    })
+    .then(response => response.json())
+    .then(data1 => {
+
+
+        data.forEach(CTAelement => {
         callToAction_div.innerHTML += `
         
         <div class="container">
@@ -102,7 +128,7 @@ function populateCallToAction(data) {
 
                         <h2><strong>${CTAelement.topic_name}</strong></h2>
                         <p>${CTAelement.topic_description}</p>
-                        <p>Створено користувачем: ${CTAelement.topic_creator_information}</p>
+                        <p>Створено користувачем: ${data1.user_name} ${data1.user_surname}</p>
                     </div>
                 </div>
             </div>
@@ -116,6 +142,14 @@ function populateCallToAction(data) {
         
         `;
     });
+
+
+    })
+
+
+
+
+
 
 
 }
