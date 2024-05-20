@@ -157,11 +157,13 @@ function populateTable(data) {
 
     table.innerHTML = '';
 
+    var attempt_number = 1;
+
     data.forEach(rowData => {
         var row = table.insertRow();
-        row.insertCell().textContent = rowData.attempt_id;
+        row.insertCell().textContent = attempt_number++;
         row.insertCell().textContent = rowData.topic_test_id;
-        row.insertCell().textContent = rowData.attempt_result;
+        row.insertCell().textContent = rowData.attempt_result + "/6";
     });
 }
 
@@ -175,13 +177,13 @@ function populateTable(data) {
     <thead>
         <tr>
             <th>
-                attempt id
+                Номер спроби
             </th>
             <th>
-                topic test id
+                Айді теми
             </th>
             <th>
-                attempt result
+                Вірних відповідей
             </th>
         </tr>
     </thead>

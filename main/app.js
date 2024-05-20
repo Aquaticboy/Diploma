@@ -254,12 +254,50 @@ app.post("/sendTestAttempt", (req, res) => {
                 console.error('Error inserting attempt:', err);
                 res.status(500).send('Error inserting attempt');
                 return;
-            }
+            } else {
             console.log('Attempt inserted successfully');
             res.status(200).send('Attempt inserted successfully');
+            }
         });
     });
 });
+
+
+app.post("/createTopicAndTopicTest", (req, res) => {
+    const { user_id, user_permition_level, topic_name, topic_description, topic_main_information, topic_question_one, topic_question_two, topic_question_three, topic_question_four, topic_question_five, topic_question_six, topic_answer_one, topic_answer_two, topic_answer_three, topic_answer_four, topic_answer_five, topic_answer_six } = req.body;
+
+    const getmaxtopicid = `SELECT MAX(topic_test_id) AS max_topic_test_id FROM topic_test_information`;
+    db_connection.query(getmaxtopicid, (err, result) => {
+        if (err) {
+            console.error('Error getting max topic id:', err);
+            res.status(500).send('Error getting max topic id');
+            return;
+        }
+
+        const topic_id = result && result.length > 0 && result[0].max_topic_test_id !== null ? result[0].max_topic_test_id + 1 : 1;
+
+        const sql1 = `INSERT INTO topic_test_information (topic_test_id, topic_question_one, topic_answer_one, topic_question_two, topic_answer_two, topic_question_three, topic_answer_three, topic_question_four, topic_answer_four, topic_question_five, topic_answer_five, topic_question_six, topic_answer_six) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        db_connection.query(sql1, [topic_id, topic_question_one, topic_answer_one, topic_question_two, topic_answer_two, topic_question_three, topic_answer_three, topic_question_four, topic_answer_four, topic_question_five, topic_answer_five, topic_question_six, topic_answer_six], (err, result) => {
+            if (err) {
+                console.error('Error inserting topic test:', err);
+                res.status(500).send('Error inserting topic test');
+                return;
+            }
+
+            const sql2 = `INSERT INTO topic_information (topic_id, topic_name, topic_description, topic_creator_information, topic_main_information, topic_test_id) VALUES (?, ?, ?, ?, ?, ?)`;
+            db_connection.query(sql2, [topic_id, topic_name, topic_description, user_id, topic_main_information, topic_id], (err, result2) => {
+                if (err) {
+                    console.error('Error inserting topic information:', err);
+                    res.status(500).send('Error inserting topic information');
+                    return;
+                }
+
+                res.status(200).send('Topic and test created successfully');
+            });
+        });
+    });
+});
+
 
 
 // Start server
