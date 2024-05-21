@@ -298,6 +298,18 @@ app.post("/createTopicAndTopicTest", (req, res) => {
     });
 });
 
+app.post("/updatesomeuserinformation", (req, res) => {
+    const { user_id, userNameforchange, userSurnameforchange, userGenderforchange } = req.body;
+    const sql = `UPDATE user_information SET user_name = ?, user_surname = ?, user_gender = ? WHERE user_id = ? `;
+    db_connection.query(sql, [userNameforchange, userSurnameforchange, userGenderforchange, user_id], (err, result) => {
+        if(err){
+            console.log(err);
+            return;
+        } else {
+            console.log("User information updated successfully")
+        }
+    });
+});
 
 
 // Start server

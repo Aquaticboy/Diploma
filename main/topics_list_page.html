@@ -58,7 +58,7 @@
     </nav>
     
     <div id="create-topic"></div>
-    
+    <h1 class="text-center" style="margin-top: 25px;">Перелік тем:</h1>
 <script>
 
 const user_Id = sessionStorage.getItem("userId");
@@ -72,11 +72,20 @@ const profile_Picture_Path = sessionStorage.getItem("profilePicturePath");
 
 document.getElementById("nav-profile-picture").src = profile_Picture_Path;
 
+//check if user's logged in and sessionStorage isn't empty
+if (sessionStorage.getItem("userId") == "") {
+    window.location.href = "./login_page.html";
+}
+
+
 //check user's permition level and add button
 if(user_Permition_Level == 2 || user_Permition_Level == 3){
     var create_topic_div = document.getElementById("create-topic");
     create_topic_div.innerHTML=`
-    <a style="margin-left: 40%; margin-right: 40%; margin-top: 10px;" class="btn btn-primary" href="./create_topic_and_test_page.html" role="button">Створити тему та тестування</a>
+    <div class="text-center">
+    <a style="margin-top: 10px" class="btn btn-primary" href="./create_topic_and_test_page.html" role="button">Створити тему та тестування</a>
+    <a style="margin-top: 10px" class="btn btn-primary" href="./edit_created_topics.html" role="button">Переглянути створені мною теми</a>
+    </div>
     `;
 }
 
@@ -134,7 +143,7 @@ function populateCallToAction(data) {
             </div>
             <div class="col-md-3 align-self-center text-center">
                 <div class="lc-block">
-                    <a class="btn btn-link btn-lg" href="./topic_information.html?topicInformationId=${CTAelement.topic_id}" role="button">Перети до теми</a>
+                    <a class="btn btn-link btn-lg" href="./topic_information.html?topicInformationId=${CTAelement.topic_id}" role="button">Перейти до теми</a>
                 </div>
             </div>
         </div>

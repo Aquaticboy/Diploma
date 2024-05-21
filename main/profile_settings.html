@@ -61,46 +61,34 @@
 
 
 
-
-<script>
-const user_Id = sessionStorage.getItem("userId");
-const user_Name = sessionStorage.getItem("userName");
-const user_Surname = sessionStorage.getItem("userSurname");
-const user_Gender = sessionStorage.getItem("userGender");
-const user_Login = sessionStorage.getItem("userLogin");
-const user_Password = sessionStorage.getItem("userPassword");
-const user_Permition_Level = sessionStorage.getItem("userPermitionLevel");
-const profile_Picture_Path = sessionStorage.getItem("profilePicturePath");
-
-document.getElementById("nav-profile-picture").src = profile_Picture_Path;
-
-
-    </script>
-
-
-
-
             <div class="col-md-12 border-right">
                 <div class="p-3 py-1">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Profile Settings</h4>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                        <div class="col-md-6"><label class="labels">Name</label><input type="text" id="nameforchange" class="form-control" placeholder="first name" value=""></div>
+                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" id="surnameforchange" class="form-control" value="" placeholder="surname"></div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                        
-                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
-                        <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                        <div style="margin-left: px;">
+                            <div class="form-check">
+                                Стать:<br>
+                                <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault11" value="Хлопець">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  Хлопець
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault22" value="Дівчина">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                  Дівчина
+                                </label>
+                              </div>
+                        </div>
                     </div>
                     <div class="mt-2 text-center">
-                        <button class="btn btn-primary profile-button" type="button">Save Profile</button>
+                        <button onclick="changeData()" class="btn btn-primary profile-button" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Save Profile</button>
                     </div>
                 </div>
             </div>
@@ -110,6 +98,26 @@ document.getElementById("nav-profile-picture").src = profile_Picture_Path;
     </div>
     </div>
 
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Зміна даних</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>Дані успішно змінено!</p>
+        </div>
+        <div class="modal-footer">
+            
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити вікно</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
     
    
         <footer id="sticky-footer" class="footer w-100 position-absolute top-100 start-50 translate-middle flex-shrink-0 py-4 bg-dark text-white-50">
@@ -118,8 +126,67 @@ document.getElementById("nav-profile-picture").src = profile_Picture_Path;
           </div>
         </footer>
 
-<script>
+        <script>
+            const user_Id = sessionStorage.getItem("userId");
+            const user_Name = sessionStorage.getItem("userName");
+            const user_Surname = sessionStorage.getItem("userSurname");
+            const user_Gender = sessionStorage.getItem("userGender");
+            const user_Login = sessionStorage.getItem("userLogin");
+            const user_Password = sessionStorage.getItem("userPassword");
+            const user_Permition_Level = sessionStorage.getItem("userPermitionLevel");
+            const profile_Picture_Path = sessionStorage.getItem("profilePicturePath");
+            
+            document.getElementById("nav-profile-picture").src = profile_Picture_Path;
+            
+            function changeData(){
+                var userNameforchange = document.getElementById("nameforchange").value;
+                var userSurnameforchange = document.getElementById("surnameforchange").value;
+                var userGenderforchange = document.querySelector('input[name="flexRadioDefault1"]:checked').value;
 
-</script>
+                if (userNameforchange != "" && userSurnameforchange != "" && userGenderforchange != "") {
+                    const body_fetch = {
+                        user_id: user_Id,
+                        userNameforchange: userNameforchange,
+                        userSurnameforchange: userSurnameforchange,
+                        userGenderforchange: userGenderforchange
+                    }
+
+                    fetch("http://localhost:3000/updatesomeuserinformation", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body_fetch)
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+
+                    sessionStorage.setItem("userName", userNameforchange);
+                    sessionStorage.setItem("userSurname", userSurnameforchange);
+                    sessionStorage.setItem("userGender", userGenderforchange);
+                    let tempVariableForPicture;
+
+                    if (userGenderforchange === "Хлопець") {
+                        tempVariableForPicture = "/images/male_pic.jpg";
+                    } else if (userGenderforchange === "Дівчина") {
+                        tempVariableForPicture = "/images/female_pic.jpg";
+                    } else {
+                        // Optionally handle unexpected gender values
+                        tempVariableForPicture = "/images/default_pic.jpg";
+                    }
+
+                    sessionStorage.setItem("profilePicturePath", tempVariableForPicture);
+
+
+                }
+
+
+                
+            }
+            
+            
+            
+                </script>
 </body>
 </html>
