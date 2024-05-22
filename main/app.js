@@ -311,6 +311,70 @@ app.post("/updatesomeuserinformation", (req, res) => {
     });
 });
 
+app.post("/gettopicpostscreatedby", (req, res) => {
+    const { user_id } = req.body;
+    const sql = `SELECT * FROM topic_information WHERE topic_creator_information = ?`;
+    db_connection.query(sql, [user_id], (err, result) => {
+        if(err){
+            console.log(err);
+            return;
+        } else {
+            res.json(result);
+            console.log("Everything's okay!");
+        }
+    });
+});
+
+app.post("/gettopicinformationandtestbytopicid", (req, res) => {
+    //let { topic_id } = req.body;
+
+    // Uncomment for testing with a fixed topic_id:
+     topic_id = 2;
+
+    const sql = `SELECT * FROM topic_information WHERE topic_id = ?`;
+    db_connection.query(sql, [topic_id], (err, result) => {
+        if (err) {
+            console.error("Error fetching topic information:", err);
+            res.status(500).send("An error occurred while fetching topic information.");
+        } else {
+            console.log("Query result:", result);
+            res.status(200).json(result);
+        }
+    });
+});
+
+app.post('/edittopicinformationandtest', (req, res) => {
+    const {
+        topic_id, topic_name, topic_description, topic_main_information,
+        topic_question_one, topic_question_two, topic_question_three, topic_question_four, topic_question_five, topic_question_six,
+        topic_answer_one, topic_answer_two, topic_answer_three, topic_answer_four, topic_answer_five, topic_answer_six
+    } = req.body;
+
+    
+    const sql = `UPDATE topic_information SET topic_name = ?, topic_description = ?, topic_main_information = ? WHERE topic_id = ?`;
+    db_connection.query(sql, [topic_name, topic_description, topic_main_information, topic_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        const sql2 = `UPDATE topic_test_information SET 
+            topic_question_one = ?, topic_question_two = ?, topic_question_three = ?, topic_question_four = ?, topic_question_five = ?, topic_question_six = ?, 
+            topic_answer_one = ?, topic_answer_two = ?, topic_answer_three = ?, topic_answer_four = ?, topic_answer_five = ?, topic_answer_six = ? 
+            WHERE topic_test_id = ?`;
+        
+        db_connection.query(sql2, [
+            topic_question_one, topic_question_two, topic_question_three, topic_question_four, topic_question_five, topic_question_six,
+            topic_answer_one, topic_answer_two, topic_answer_three, topic_answer_four, topic_answer_five, topic_answer_six, topic_id
+        ], (err, result) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log('Table topic_test_information updated!');
+        });
+    });
+});
+
 
 // Start server
 app.listen(port, () => {

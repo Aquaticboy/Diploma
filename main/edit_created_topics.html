@@ -16,8 +16,68 @@
         <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1"/>
     </svg>
 </a>
-<h1 class="text-center">Створені теми</h1>
+<h1 class="text-center">Створені вами теми</h1>
 
+<div id="created-topics"></div>
+
+<script>
+    var user_Id = sessionStorage.getItem("userId");
+
+    const body_fetch = {
+        user_id: user_Id
+    }
+
+
+    fetch("http://localhost:3000/gettopicpostscreatedby", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body_fetch)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        populateTopics(data);
+
+    })
+
+
+
+
+function populateTopics(data){
+    var created_topics = document.getElementById("created-topics");
+
+    data.forEach(CTAelement => {
+        created_topics.innerHTML += `
+        
+        <div class="container">
+        <div class="row py-5">
+            <div class="col-md-9">
+                <div class="lc-block">
+                    <div editable="rich">
+
+                        <h2><strong>${CTAelement.topic_name}</strong></h2>
+                        <p>${CTAelement.topic_description}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 align-self-center text-center">
+                <div class="lc-block">
+                    <a class="btn btn-link btn-lg" href="./topic_update.html?topicId=${CTAelement.topic_id}" role="button">Перейти до редагування теми</a>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        `;
+    });
+
+}
+
+
+
+</script>
 
 </body>
 </html>

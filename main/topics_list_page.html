@@ -72,11 +72,6 @@ const profile_Picture_Path = sessionStorage.getItem("profilePicturePath");
 
 document.getElementById("nav-profile-picture").src = profile_Picture_Path;
 
-//check if user's logged in and sessionStorage isn't empty
-if (sessionStorage.getItem("userId") == "") {
-    window.location.href = "./login_page.html";
-}
-
 
 //check user's permition level and add button
 if(user_Permition_Level == 2 || user_Permition_Level == 3){
