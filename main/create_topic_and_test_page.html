@@ -190,6 +190,10 @@
 
 
     }
+    
+    if (sessionStorage.getItem("userId") === null || sessionStorage.getItem("userId") === undefined) {
+    window.location.href = "./login_page.html";
+}
 </script>
 </body>
 </html>
