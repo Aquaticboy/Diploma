@@ -65,36 +65,63 @@
         const { topic_id, topic_name, topic_description, topic_creator_information, topic_main_information, topic_test_id } = topicData;
 
 
-        var div_mainInformation = document.getElementById('topic-main-information');
+        const fettchbody = {
+            user_id: topic_creator_information
+        }
 
-        div_mainInformation.innerHTML=`
-            
-<figure class="text-center">
-    <blockquote class="blockquote">
-        <h1>${topic_name}</h1>
-    </blockquote>
-    <figcaption class="blockquote-footer">
-        Topic created by <cite title="Source Title">${topic_creator_information}</cite>
-    </figcaption>
-</figure>
+        fetch("http://localhost:3000/getuserinformationbyid", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(fettchbody)
+        })
+        .then(response => response.json())
+        .then(data1 => {
 
-<div class="container">
-  <div class="row">
-    <div class="col-1" >
-    </div>
-    <div class="col-10">
-      ${topic_main_information}
-    </div>
-    <div class="col-1">
-    </div>
-  </div>
-<hr>
+            console.log(data1)
 
-<div class="d-grid gap-2">
-  <button onclick="location.href='./topic_test_page.html?topicTestId=${topic_test_id}';" class="btn btn-primary" style="position:fixed;bottom:0;left:0;right:0;height:50px;" type="button">Пройти тестування</button>
-</div>
+            var div_mainInformation = document.getElementById('topic-main-information');
 
-        `;
+            div_mainInformation.innerHTML=`
+                
+            <figure class="text-center">
+            <blockquote class="blockquote">
+            <h1>${topic_name}</h1>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+            Topic created by <cite title="Source Title">${data1.user_name} ${data1.user_surname}</cite>
+            </figcaption>
+            </figure>
+
+            <div class="container">
+            <div class="row">
+            <div class="col-1" >
+            </div>
+            <div class="col-10">
+            ${topic_main_information}
+            </div>
+            <div class="col-1">
+            </div>
+            </div>
+
+            <br><br><br>
+
+            <div class="d-grid gap-2">
+            <button onclick="location.href='./topic_test_page.html?topicTestId=${topic_test_id}';" class="btn btn-primary" style="position:fixed;bottom:0;left:0;right:0;height:50px;" type="button">Пройти тестування</button>
+            </div>
+
+            `;
+
+
+
+
+        })
+        
+
+
+
+        
 
         
     })

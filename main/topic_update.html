@@ -104,7 +104,12 @@
           </div>
       </div>
       <br>
-      <button type="submit" style="margin-left: 40%; margin-right: 35%; margin-top: 10px;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Підтвердити оновлення теми та тестування</button>
+      <div class="d-flex justify-content-center mt-2">
+        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Підтвердити оновлення теми та тестування
+        </button>
+    </div>
+    
 </form>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -141,6 +146,76 @@
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
+    var topic_id = getParameterByName("topicId");
+
+    const fetchbody = {
+      topicId: topic_id
+    }
+
+    fetch("http://localhost:3000/getInformationForTopicPage", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(fetchbody)
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data[0])
+
+
+          //document.getElementById("nameforchange").value = user_Name;
+
+          document.getElementById("form-topic-name").value = data[0].topic_name;
+          document.getElementById("form-topic-description").value = data[0].topic_description;
+          document.getElementById("form-topic-main-information").value = data[0].topic_main_information;
+
+
+
+
+
+
+          const fetchbody2 = {
+            topicTestId: topic_id
+          }
+
+          fetch("http://localhost:3000/getTopicTest", {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(fetchbody2)
+              })
+              .then(response => response.json())
+              .then(data1 => {
+                  console.log(data1[0]);
+
+                  
+                  document.getElementById("form-question1").value = data1[0].topic_question_one;
+                  document.getElementById("form-answer1").value = data1[0].topic_answer_one;
+                  document.getElementById("form-question2").value = data1[0].topic_question_two;
+                  document.getElementById("form-answer2").value = data1[0].topic_answer_two;
+                  document.getElementById("form-question3").value = data1[0].topic_question_three;
+                  document.getElementById("form-answer3").value = data1[0].topic_answer_three;
+                  document.getElementById("form-question4").value = data1[0].topic_question_four;
+                  document.getElementById("form-answer4").value = data1[0].topic_answer_four;
+                  document.getElementById("form-question5").value = data1[0].topic_question_five;
+                  document.getElementById("form-answer5").value = data1[0].topic_answer_five;
+                  document.getElementById("form-question6").value = data1[0].topic_question_six;
+                  document.getElementById("form-answer6").value = data1[0]. topic_answer_six;
+
+
+              })
+
+          
+
+
+
+
+        })
+
+
+
 
     function createTopicAndTest() {
         var topic_id = getParameterByName("topicId");
