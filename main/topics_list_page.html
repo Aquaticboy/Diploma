@@ -6,167 +6,129 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
 </head>
 <body>
-    <nav
-        class="navbar navbar-expand-sm navbar-dark bg-dark"
-    >
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">Easy English</a>
-            <button
-                class="navbar-toggler d-lg-none"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapsibleNavId"
-                aria-controls="collapsibleNavId"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-                aria-current="page"
-                >
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" aria-current="page">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fs-6 text active" style="text-decoration: underline;" href="./topics_list_page.html" aria-current="page"
-                            >Topics
-                            <span class="visually-hidden">(current)</span></a
-                        >
+                        <a class="nav-link fs-6 text active" style="text-decoration: underline;" href="./topics_list_page.html" aria-current="page">
+                            Topics
+                            <span class="visually-hidden">(current)</span>
+                        </a>
                     </li>
                 </ul>
-
-
-
-            
                 <div class="flex-shrink-0 dropdown">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img id="nav-profile-picture" src="" alt="mdo" width="64" height="64" class="rounded-circle">
+                        <img id="nav-profile-picture" src="" alt="Profile Picture" width="64" height="64" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                      <li><a class="dropdown-item" href="./user_profile.html">Profile</a></li>
-                      <li><a class="dropdown-item" href="./profile_settings.html">Settings</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" onclick="clearSession()" href="./login_page.html">Sign out</a></li>
+                        <li><a class="dropdown-item" href="./user_profile.html">Profile</a></li>
+                        <li><a class="dropdown-item" href="./profile_settings.html">Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" onclick="clearSession()" href="./login_page.html">Sign out</a></li>
                     </ul>
-                  </div>
-
-
+                </div>
             </div>
-
         </div>
     </nav>
     
     <div id="create-topic"></div>
     <h1 class="text-center" style="margin-top: 25px;">Перелік тем:</h1>
-<script>
+    <div id="call-to-action"></div>
 
-const user_Id = sessionStorage.getItem("userId");
-const user_Name = sessionStorage.getItem("userName");
-const user_Surname = sessionStorage.getItem("userSurname");
-const user_Gender = sessionStorage.getItem("userGender");
-const user_Login = sessionStorage.getItem("userLogin");
-const user_Password = sessionStorage.getItem("userPassword");
-const user_Permition_Level = sessionStorage.getItem("userPermitionLevel");
-const profile_Picture_Path = sessionStorage.getItem("profilePicturePath");
+    <script>
+        const user_Id = sessionStorage.getItem("userId");
+        const user_Name = sessionStorage.getItem("userName");
+        const user_Surname = sessionStorage.getItem("userSurname");
+        const user_Gender = sessionStorage.getItem("userGender");
+        const user_Login = sessionStorage.getItem("userLogin");
+        const user_Password = sessionStorage.getItem("userPassword");
+        const user_Permition_Level = sessionStorage.getItem("userPermitionLevel");
+        const profile_Picture_Path = sessionStorage.getItem("profilePicturePath");
 
-document.getElementById("nav-profile-picture").src = profile_Picture_Path;
+        document.getElementById("nav-profile-picture").src = profile_Picture_Path;
 
+        // Check user's permission level and add button
+        if (user_Permition_Level == 2 || user_Permition_Level == 3) {
+            var create_topic_div = document.getElementById("create-topic");
+            create_topic_div.innerHTML = `
+                <div class="text-center">
+                    <a style="margin-top: 10px" class="btn btn-primary" href="./create_topic_and_test_page.html" role="button">Створити тему та тестування</a>
+                    <a style="margin-top: 10px" class="btn btn-primary" href="./edit_created_topics.html" role="button">Переглянути створені мною теми</a>
+                </div>
+            `;
+        }
 
-//check user's permition level and add button
-if(user_Permition_Level == 2 || user_Permition_Level == 3){
-    var create_topic_div = document.getElementById("create-topic");
-    create_topic_div.innerHTML=`
-    <div class="text-center">
-    <a style="margin-top: 10px" class="btn btn-primary" href="./create_topic_and_test_page.html" role="button">Створити тему та тестування</a>
-    <a style="margin-top: 10px" class="btn btn-primary" href="./edit_created_topics.html" role="button">Переглянути створені мною теми</a>
-    </div>
-    `;
-}
+        fetch("http://localhost:3000/getAllTopicInformation", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(topic => {
+                populateCallToAction(topic);        
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
 
+        function populateCallToAction(topic) {
+            var callToAction_div = document.getElementById('call-to-action');
+            const body_togetuserinformation_fetch = {
+                user_id: topic.topic_creator_information
+            };
 
-
-fetch("http://localhost:3000/getAllTopicInformation", {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-})
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-    populateCallToAction(data);
-
-})
-.catch(error =>{
-    console.error('Error fetching data:', error);
-});
-
-function populateCallToAction(data) {
-    var callToAction_div = document.getElementById('call-to-action');
-    
-
-    const body_togetuserinformation_fetch = {
-        user_id: user_Id
-    }
-
-    fetch("http://localhost:3000/getuserinformationbyid", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body_togetuserinformation_fetch)
-    })
-    .then(response => response.json())
-    .then(data1 => {
-
-
-        data.forEach(CTAelement => {
-        callToAction_div.innerHTML += `
-        
-        <div class="container">
-        <div class="row py-5">
-            <div class="col-md-9">
-                <div class="lc-block">
-                    <div editable="rich">
-
-                        <h2><strong>${CTAelement.topic_name}</strong></h2>
-                        <p>${CTAelement.topic_description}</p>
-                        <p>Створено користувачем: ${data1.user_name} ${data1.user_surname}</p>
+            fetch("http://localhost:3000/getuserinformationbyid", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body_togetuserinformation_fetch)
+            })
+            .then(response => response.json())
+            .then(user_info => {
+                callToAction_div.innerHTML += `
+                    <div class="container">
+                        <div class="row py-5">
+                            <div class="col-md-9">
+                                <div class="lc-block">
+                                    <div editable="rich">
+                                        <h2><strong>${topic.topic_name}</strong></h2>
+                                        <p>${topic.topic_description}</p>
+                                        <p>Створено користувачем: ${user_info.user_name} ${user_info.user_surname}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 align-self-center text-center">
+                                <div class="lc-block">
+                                    <a class="btn btn-link btn-lg" href="./topic_information.html?topicInformationId=${topic.topic_id}" role="button">Перейти до теми</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-3 align-self-center text-center">
-                <div class="lc-block">
-                    <a class="btn btn-link btn-lg" href="./topic_information.html?topicInformationId=${CTAelement.topic_id}" role="button">Перейти до теми</a>
-                </div>
-            </div>
-        </div>
-    </div>
-        
-        `;
-    });
+                `;
+            })
+            .catch(error => {
+                console.error('Error fetching user info:', error);
+            });
+        }
 
+        if (sessionStorage.getItem("userId") === null || sessionStorage.getItem("userId") === undefined) {
+            window.location.href = "./login_page.html";
+        }
 
-    })
-
-
-
-
-
-
-
-}
-
-if (sessionStorage.getItem("userId") === null || sessionStorage.getItem("userId") === undefined) {
-    window.location.href = "./login_page.html";
-}
-
+        function clearSession() {
+            sessionStorage.clear();
+        }
     </script>
-
-<div id="call-to-action"></div>
-
-
-
 </body>
 </html>
