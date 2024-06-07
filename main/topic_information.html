@@ -42,7 +42,6 @@
     }
 
     var TopicId = getParameterByName('topicInformationId');
-    console.log(TopicId);
 
     var body_for_fetch = {
         topicId: TopicId
@@ -57,9 +56,7 @@
     })
     .then(response => response.json())
     .then(data => {        
-        console.log(data);
         const topicData = data[0];
-        console.log(topicData);
 
 
         const { topic_id, topic_name, topic_description, topic_creator_information, topic_main_information, topic_test_id } = topicData;
@@ -78,8 +75,6 @@
         })
         .then(response => response.json())
         .then(data1 => {
-
-            console.log(data1)
 
             var div_mainInformation = document.getElementById('topic-main-information');
 

@@ -18,7 +18,7 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fs-6 text" href="./topics_list_page.html" aria-current="page">Topics<span class="visually-hidden">(current)</span></a>
+                        <a class="nav-link fs-6 text" href="./topics_list_page.html" aria-current="page">Перелік тем<span class="visually-hidden">(current)</span></a>
                     </li>
                 </ul>
                 <div class="flex-shrink-0 dropdown">
@@ -26,10 +26,10 @@
                         <img id="nav-profile-picture" src="" alt="mdo" width="64" height="64" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a class="dropdown-item" href="./user_profile.html">Profile</a></li>
-                        <li><a class="dropdown-item" href="./profile_settings.html">Settings</a></li>
+                        <li><a class="dropdown-item" href="./user_profile.html">Профіль</a></li>
+                        <li><a class="dropdown-item" href="./profile_settings.html">Налаштування</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" onclick="clearSession()" href="./login_page.html">Sign out</a></li>
+                        <li><a class="dropdown-item" onclick="clearSession()" href="./login_page.html">Вийти з профілю</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,12 +38,12 @@
     <div class="col-md-12 border-right">
         <div class="p-3 py-1">
             <form id="profilesettingsForm">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
+                <div style="margin-top: 10px;" class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Налаштування профілю</h4>
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Name</label><input type="text" id="nameforchange" class="form-control" placeholder="first name" value=""></div>
-                    <div class="col-md-6"><label class="labels">Surname</label><input type="text" id="surnameforchange" class="form-control" value="" placeholder="surname"></div>
+                    <div class="col-md-6"><label class="labels">Ім'я</label><input type="text" id="nameforchange" class="form-control" placeholder="first name" value=""></div>
+                    <div class="col-md-6"><label class="labels">Прізвище</label><input type="text" id="surnameforchange" class="form-control" value="" placeholder="surname"></div>
                 </div>
                 <div class="row mt-3">
                     <div style="margin-left: px;">
@@ -60,7 +60,7 @@
                 </div>
             </form>
             <div class="mt-2 text-center">
-                <button onclick="changeData()" class="btn btn-primary profile-button" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Save Profile</button>
+                <button onclick="changeData()" class="btn btn-primary profile-button" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Зберегти зміни</button>
             </div>
         </div>
     </div>

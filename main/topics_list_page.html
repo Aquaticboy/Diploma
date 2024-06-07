@@ -18,7 +18,7 @@
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                     <li class="nav-item">
                         <a class="nav-link fs-6 text active" style="text-decoration: underline;" href="./topics_list_page.html" aria-current="page">
-                            Topics
+                            Перелік тем
                             <span class="visually-hidden">(current)</span>
                         </a>
                     </li>
@@ -28,10 +28,10 @@
                         <img id="nav-profile-picture" src="" alt="Profile Picture" width="64" height="64" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                        <li><a class="dropdown-item" href="./user_profile.html">Profile</a></li>
-                        <li><a class="dropdown-item" href="./profile_settings.html">Settings</a></li>
+                        <li><a class="dropdown-item" href="./user_profile.html">Профіль</a></li>
+                        <li><a class="dropdown-item" href="./profile_settings.html">Налаштування</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" onclick="clearSession()" href="./login_page.html">Sign out</a></li>
+                        <li><a class="dropdown-item" onclick="clearSession()" href="./login_page.html">Вийти з профілю</a></li>
                     </ul>
                 </div>
             </div>
@@ -98,7 +98,7 @@
             .then(user_info => {
                 callToAction_div.innerHTML += `
                     <div class="container">
-                        <div class="row py-5">
+                        <div style="margin-left: 3px; margin-right: 3px; margin-top: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" class="row py-5">
                             <div class="col-md-9">
                                 <div class="lc-block">
                                     <div editable="rich">

@@ -16,7 +16,7 @@
         <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1"/>
     </svg>
 </a>
-<h1 class="text-center">Створені вами теми</h1>
+<h1 class="text-center">Створені мною теми</h1>
 
 <div id="created-topics"></div>
 
@@ -37,7 +37,6 @@
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         populateTopics(data);
 
     })
@@ -52,7 +51,7 @@ function populateTopics(data){
         created_topics.innerHTML += `
         
         <div class="container">
-        <div class="row py-5">
+        <div style="margin-left: 3px; margin-right: 3px; margin-top: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" class="row py-5">
             <div class="col-md-9">
                 <div class="lc-block">
                     <div editable="rich">
