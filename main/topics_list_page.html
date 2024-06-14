@@ -7,10 +7,63 @@
     <link rel="shortcut icon" href="/images/alphabet.png" type="image/x-icon"/> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+    <style>
+        body {
+            background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+            font-family: 'Comic Sans MS', sans-serif;
+            color: #333;
+        }
+        .navbar {
+            background-color: #ff6f61;
+        }
+        .navbar-brand {
+            color: #ff6f61;
+            font-size: 1.5rem;
+        }
+        .navbar-nav .nav-link {
+            font-size: 1.2rem;
+        }
+        .dropdown-menu .dropdown-item {
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background-color: #ff6f61;
+            border: none;
+            font-size: 1.1rem;
+        }
+        .btn-primary:hover {
+            background-color: #ff4f41;
+        }
+        .topic-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+        h1 {
+            color: #ff6f61;
+        }
+        .btn-link {
+            color: #ff6f61;
+            font-size: 1.1rem;
+        }
+        .btn-link:hover {
+            color: #ff4f41;
+        }
+        .footer {
+            background-color: #ff6f61;
+            color: white;
+        }
+        .footer small {
+            font-size: 1rem;
+        }
+        .rounded-circle {
+            border: 2px solid #ff6f61;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">Easy English</a>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" aria-current="page">
@@ -44,6 +97,14 @@
     <h1 class="text-center" style="margin-top: 25px;">Перелік тем:</h1>
     <div id="call-to-action"></div>
 
+<br><br><br>
+
+    <footer id="sticky-footer" class="footer mt-auto flex-shrink-0 py-4 text-white-50">
+        <div class="container text-center">
+            <small>Copyright &copy; Easy English</small>
+        </div>
+    </footer>
+
     <script>
         const user_Id = sessionStorage.getItem("userId");
         const user_Name = sessionStorage.getItem("userName");
@@ -56,7 +117,6 @@
 
         document.getElementById("nav-profile-picture").src = profile_Picture_Path;
 
-        // Check user's permission level and add button
         if (user_Permition_Level == 2 || user_Permition_Level == 3) {
             var create_topic_div = document.getElementById("create-topic");
             create_topic_div.innerHTML = `
@@ -99,8 +159,8 @@
             .then(response => response.json())
             .then(user_info => {
                 callToAction_div.innerHTML += `
-                    <div class="container">
-                        <div style="margin-left: 3px; margin-right: 3px; margin-top: 10px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" class="row py-5">
+                    <div class="container topic-container">
+                        <div class="row py-5">
                             <div class="col-md-9">
                                 <div class="lc-block">
                                     <div editable="rich">

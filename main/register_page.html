@@ -5,156 +5,181 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Реєстрація</title>
     <link rel="shortcut icon" href="/images/alphabet.png" type="image/x-icon"/> 
-    <link rel="stylesheet" href="./css/style_for_entering_pages.css">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-
+    <style>
+        body {
+            background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+            font-family: 'Comic Sans MS', sans-serif;
+            color: #333;
+        }
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .large-h1 {
+            text-align: center;
+            color: #ff6f61;
+            font-size: 2.5rem;
+        }
+        .form-label-custom {
+            font-weight: bold;
+            color: #555;
+        }
+        .btn-primary {
+            background-color: #ff6f61;
+            border-color: #ff6f61;
+        }
+        .btn-primary:hover {
+            background-color: #ff3b2e;
+            border-color: #ff3b2e;
+        }
+        .form-button-custom {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .form-button-custom1 a {
+            text-decoration: none;
+        }
+        .form-button-custom1 button,
+        .form-button-custom1 a.button {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 
-<form action="" id="registerForm">
-    <div class="temp-for-div2">
-        <div class="temp-for-div">
-    
-            <h1 class="large-h1">Реєстрація</h1>
-            <p>Після реєстрації самостійно перейдіть на сторінку входу кнопкою внизу!</p>
-            <div class="mb-3">
-                <label for="" class="form-label-custom">Ім'я</label>
-                <input type="text" class="form-control" name="accName" id="accName" aria-describedby="helpId" placeholder="" />
-            </div>
-            
-            <div class="mb-3">
-                <label for="" class="form-label-custom">Прізвище</label>
-                <input type="text" class="form-control" name="accSurname" id="accSurname" aria-describedby="helpId" placeholder="" />
-            </div>
-            
-            <div class="mb-3">
-                <label for="" class="form-label-custom">Логін</label>
-                <input type="text" class="form-control" name="accLogin" id="accLogin" aria-describedby="helpId" placeholder="" />
-            </div>
-            
-            
-            <div class="mb-3">
-                <label for="" class="form-label-custom">Пароль</label>
-                <input type="password" class="form-control" name="accPassword" id="accPassword" aria-describedby="helpId" placeholder="" />
-            </div>
-    
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mt-2 mb-2">
-                        <div class="form-check">
-                            Хто я?<br>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Учень">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                              Учень
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Вчитель">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                              Вчитель
-                            </label>
-                          </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="mt-2 mb-2">
-                        <div class="form-check">
-                            Стать:<br>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault11" value="Хлопець">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                              Хлопець
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault22" value="Дівчина">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                              Дівчина
-                            </label>
-                          </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="form-button-custom">
-                
-                <div class="form-button-custom1">
-                    <div class="form-button-custom1">
-                        <button style="margin-top: 5px;" type="submit" class="btn btn-primary" onclick="registerUser()">
-                            Зареєструватися
-                        </button>
-                    <a style="margin-top: 5px;" href="./login_page.html" class="button btn btn-primary">
-                        Повернутися назад
-                    </a>
-                </div>
-    
-            </div>
-    
-            
-
+<div class="container">
+    <form id="registerForm">
+        <h1 class="large-h1">Реєстрація</h1>
+        <p class="text-center">Після реєстрації самостійно перейдіть на сторінку входу кнопкою внизу!</p>
+        <div class="mb-3">
+            <label for="accName" class="form-label-custom">Ім'я</label>
+            <input type="text" class="form-control" name="accName" id="accName" aria-describedby="helpId" placeholder="Введіть ваше ім'я" />
         </div>
-    </div>
-</form>
+        
+        <div class="mb-3">
+            <label for="accSurname" class="form-label-custom">Прізвище</label>
+            <input type="text" class="form-control" name="accSurname" id="accSurname" aria-describedby="helpId" placeholder="Введіть ваше прізвище" />
+        </div>
+        
+        <div class="mb-3">
+            <label for="accLogin" class="form-label-custom">Логін</label>
+            <input type="text" class="form-control" name="accLogin" id="accLogin" aria-describedby="helpId" placeholder="Введіть ваш логін" />
+        </div>
+        
+        <div class="mb-3">
+            <label for="accPassword" class="form-label-custom">Пароль</label>
+            <input type="password" class="form-control" name="accPassword" id="accPassword" aria-describedby="helpId" placeholder="Введіть ваш пароль" />
+        </div>
 
-    
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mt-2 mb-2">
+                    <div class="form-check">
+                        Хто я?<br>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Учень">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Учень
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Вчитель">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Вчитель
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="mt-2 mb-2">
+                    <div class="form-check">
+                        Стать:<br>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault11" value="Хлопець">
+                        <label class="form-check-label" for="flexRadioDefault11">
+                          Хлопець
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault22" value="Дівчина">
+                        <label class="form-check-label" for="flexRadioDefault22">
+                          Дівчина
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-button-custom">
+            <div class="form-button-custom1">
+                <button style="margin-top: 5px;" type="submit" class="btn btn-primary" onclick="registerUser()">Зареєструватися</button>
+            </div>
+            <div class="form-button-custom1">
+                <a style="margin-top: 5px;" href="./login_page.html" class="button btn btn-primary">Повернутися назад</a>
+            </div>
+        </div>
+    </form>
+</div>
+
 <script>
     function registerUser() {
-            var accPermitionLevel_radionValue = document.querySelector('input[name="flexRadioDefault"]:checked');
+        event.preventDefault();
+        var accPermitionLevel_radionValue = document.querySelector('input[name="flexRadioDefault"]:checked');
 
-            if (accPermitionLevel_radionValue) {
-                if(accPermitionLevel_radionValue.value === "Учень"){
-                    var accPermitionLevel = 1;
-                } else if(accPermitionLevel_radionValue.value === "Вчитель"){
-                    var accPermitionLevel = 2;
-                }
-            } else {
-                alert("No radio button is checked.");
-            }
-
-            var accSelectedGender = document.querySelector('input[name="flexRadioDefault1"]:checked');
-            
-            var accName = document.getElementById("accName").value;
-            var accSurname = document.getElementById("accSurname").value;
-            var accLogin = document.getElementById("accLogin").value;
-            var accPassword = document.getElementById("accPassword").value;
-
-
-            var body = {
-                user_name: accName,
-                user_surname: accSurname,
-                user_gender: accSelectedGender.value,
-                user_login: accLogin,
-                user_password: accPassword,
-                user_permition_level: accPermitionLevel
-            };
-
-            fetch('http://localhost:3000/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            })
-            .then(response => response.text())
-            .then(data => {
-                const temp_boolean = data;
-                console.log(temp_boolean);
-                if(temp_boolean == "true"){
-                    alert("Registration successful. Please login.");
-                    window.location.href = "./login_page.html";
-                } else {
-                    console.log("Something's wrong with data!");
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error occurred. Please try again.');
-            });
+        if (accPermitionLevel_radionValue) {
+            var accPermitionLevel = accPermitionLevel_radionValue.value === "Учень" ? 1 : 2;
+        } else {
+            alert("Будь ласка, оберіть хто ви.");
+            return;
         }
+
+        var accSelectedGender = document.querySelector('input[name="flexRadioDefault1"]:checked');
+
+        if (!accSelectedGender) {
+            alert("Будь ласка, оберіть вашу стать.");
+            return;
+        }
+
+        var accName = document.getElementById("accName").value;
+        var accSurname = document.getElementById("accSurname").value;
+        var accLogin = document.getElementById("accLogin").value;
+        var accPassword = document.getElementById("accPassword").value;
+
+        var body = {
+            user_name: accName,
+            user_surname: accSurname,
+            user_gender: accSelectedGender.value,
+            user_login: accLogin,
+            user_password: accPassword,
+            user_permition_level: accPermitionLevel
+        };
+
+        fetch('http://localhost:3000/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data === "true") {
+                alert("Реєстрація успішна. Будь ласка, увійдіть.");
+                window.location.href = "./login_page.html";
+            } else {
+                alert("Сталася помилка. Спробуйте ще раз.");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Сталася помилка. Спробуйте ще раз.');
+        });
+    }
 </script>
 
 </body>

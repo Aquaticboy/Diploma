@@ -8,86 +8,105 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="./test-quiz.js"></script>
-    <link rel="stylesheet" href="./css/style_for_test_page.css">
-
+    <style>
+        body {
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            font-family: 'Comic Sans MS', sans-serif;
+            color: #333;
+        }
+        .form-control {
+            border: 2px solid #ff6f61;
+            border-radius: 15px;
+        }
+        .form-label {
+            font-weight: bold;
+            color: #ff6f61;
+        }
+        .btn-primary {
+            background-color: #ff6f61;
+            border-color: #ff6f61;
+        }
+        .btn-primary:hover {
+            background-color: #ff7f71;
+            border-color: #ff7f71;
+        }
+        .modal-content {
+            border-radius: 15px;
+        }
+        .modal-header, .modal-footer {
+            background-color: #ff6f61;
+            color: white;
+        }
+        .question-container {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
-    <div>
-        <div id="div-questions" style="margin-top: 15%;"></div>
-    </div>
-
-    <div class="text-center">
+<div class="container mt-5">
+    <div id="div-questions" class="question-container text-center"></div>
 
     <div class="mb-3" id="question1Div">
-        <label for="question1" class="form-label1" id="labelforquestion1"></label>
-        <input type="text" class="form-control" name="question1" id="question1" aria-describedby="helpId" placeholder="Записуйте вашу відповідь сюди :)"/>
-        </div>        
+        <label for="question1" class="form-label" id="labelforquestion1"></label>
+        <input type="text" class="form-control" name="question1" id="question1" placeholder="Записуйте вашу відповідь сюди :)"/>
+    </div>        
 
-        <div class="mb-3" id="question2Div">
-        <label for="question1" class="form-label2" id="labelforquestion2"></label>
-        <input type="text" class="form-control" name="question2" id="question2" aria-describedby="helpId" placeholder="Записуйте вашу відповідь сюди :)" />
+    <div class="mb-3" id="question2Div">
+        <label for="question2" class="form-label" id="labelforquestion2"></label>
+        <input type="text" class="form-control" name="question2" id="question2" placeholder="Записуйте вашу відповідь сюди :)" />
     </div>
 
-        <div class="mb-3" id="question3Div">
-        <label for="question1" class="form-label3" id="labelforquestion3"></label>
-        <input type="text" class="form-control" name="question3" id="question3" aria-describedby="helpId" placeholder="Записуйте вашу відповідь сюди :)" />
+    <div class="mb-3" id="question3Div">
+        <label for="question3" class="form-label" id="labelforquestion3"></label>
+        <input type="text" class="form-control" name="question3" id="question3" placeholder="Записуйте вашу відповідь сюди :)" />
     </div>
 
-        <div class="mb-3" id="question4Div">
-        <label for="question1" class="form-label4" id="labelforquestion4"></label>
-        <input type="text" class="form-control" name="question4" id="question4"  aria-describedby="helpId" placeholder="Записуйте вашу відповідь сюди :)" />
+    <div class="mb-3" id="question4Div">
+        <label for="question4" class="form-label" id="labelforquestion4"></label>
+        <input type="text" class="form-control" name="question4" id="question4" placeholder="Записуйте вашу відповідь сюди :)" />
     </div>
 
-        <div class="mb-3" id="question5Div">
-        <label for="question1" class="form-label5" id="labelforquestion5"></label>
-        <input type="text" class="form-control" name="question5" id="question5" aria-describedby="helpId" placeholder="Записуйте вашу відповідь сюди :)" />
+    <div class="mb-3" id="question5Div">
+        <label for="question5" class="form-label" id="labelforquestion5"></label>
+        <input type="text" class="form-control" name="question5" id="question5" placeholder="Записуйте вашу відповідь сюди :)" />
     </div>
 
-        <div class="mb-3" id="question6Div">
-        <label for="question1" class="form-label6" id="labelforquestion6"></label>
-        <input type="text" class="form-control" name="question6" id="question6" aria-describedby="helpId" placeholder="Записуйте вашу відповідь сюди :)" />
+    <div class="mb-3" id="question6Div">
+        <label for="question6" class="form-label" id="labelforquestion6"></label>
+        <input type="text" class="form-control" name="question6" id="question6" placeholder="Записуйте вашу відповідь сюди :)" />
     </div>
 
-    </div>
-    
-
-    <div class="text-center">
+    <div class="text-center mt-4">
         <button type="button" class="btn btn-primary" id="prevQuestion">Попереднє питання</button>
         <button type="button" class="btn btn-primary" id="nextQuestion">Наступне питання</button>
-    
-<br>
-<br>
-
-    <button type="button" class="btn btn-primary" onclick="checkAnswers()" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Завершити
-    </button>
+        <br><br>
+        <button type="button" class="btn btn-primary" onclick="checkAnswers()" data-bs-toggle="modal" data-bs-target="#exampleModal">Завершити</button>
+    </div>
 </div>
 
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Результат тесту</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="redirectToIndex()"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="resultMessage"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="redirectToIndex()">Завершити</button>
-                </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Результат тесту</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="redirectToIndex()"></button>
+            </div>
+            <div class="modal-body">
+                <p id="resultMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="redirectToIndex()">Завершити</button>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script>
-let currentQuestion = 1;
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+    let currentQuestion = 1;
 
-
-function getParameterByName(name, url) {
+    function getParameterByName(name, url) {
         if (!url) url = window.location.href;
         name = name.replace(/[\[\]]/g, '\\$&');
         var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -99,165 +118,125 @@ function getParameterByName(name, url) {
 
     var TopicTestId = getParameterByName('topicTestId');
 
-
-
     var body_for_fetch = {
         topicTestId: TopicTestId
     }
 
+    async function fetchTestData(){
+        try {
+            const response = await fetch("http://localhost:3000/getTopicTest", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body_for_fetch)
+            });
+            const data = await response.json();
+            const testData = data[0];
 
-async function fetchTestData(){
-    try {
-        const response = await fetch("http://localhost:3000/getTopicTest", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body_for_fetch)
-        });
-        const data = await response.json();
-        const testData = data[0];
+            const { topic_test_id, topic_question_one, topic_answer_one, topic_question_two, topic_answer_two,
+                 topic_question_three, topic_answer_three, topic_question_four, topic_answer_four,
+                  topic_question_five, topic_answer_five, topic_question_six, topic_answer_six }  = testData;
 
-        const { topic_test_id, topic_question_one, topic_answer_one, topic_question_two, topic_answer_two,
-             topic_question_three, topic_answer_three, topic_question_four, topic_answer_four,
-              topic_question_five, topic_answer_five, topic_question_six, topic_answer_six }  = testData;
+            document.getElementById("labelforquestion1").textContent = topic_question_one;
+            document.getElementById("labelforquestion2").textContent = topic_question_two;
+            document.getElementById("labelforquestion3").textContent = topic_question_three;
+            document.getElementById("labelforquestion4").textContent = topic_question_four;
+            document.getElementById("labelforquestion5").textContent = topic_question_five;
+            document.getElementById("labelforquestion6").textContent = topic_question_six;
 
-        var inputValue1 = document.querySelector(".form-label1");
-        var inputValue2 = document.querySelector(".form-label2");
-        var inputValue3 = document.querySelector(".form-label3");
-        var inputValue4 = document.querySelector(".form-label4");
-        var inputValue5 = document.querySelector(".form-label5");
-        var inputValue6 = document.querySelector(".form-label6");
-        
-        inputValue1.textContent = topic_question_one;
-        inputValue2.textContent = topic_question_two;
-        inputValue3.textContent = topic_question_three;
-        inputValue4.textContent = topic_question_four;
-        inputValue5.textContent = topic_question_five;
-        inputValue6.textContent = topic_question_six;
-
-        return testData;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
+            return testData;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error;
+        }
     }
-}
-fetchTestData();
+    fetchTestData();
 
-async function checkAnswers() {
-    const testDataArr = await fetchTestData();
+    async function checkAnswers() {
+        const testDataArr = await fetchTestData();
 
-    console.log(testDataArr);
+        const { topic_answer_one, topic_answer_two, topic_answer_three, topic_answer_four,
+              topic_answer_five, topic_answer_six } = testDataArr;
 
-    const { topic_test_id, topic_question_one, topic_answer_one, topic_question_two, topic_answer_two,
-         topic_question_three, topic_answer_three, topic_question_four, topic_answer_four,
-          topic_question_five, topic_answer_five, topic_question_six, topic_answer_six }  = testDataArr;
+        var answer1 = document.getElementById('question1').value;
+        var answer2 = document.getElementById('question2').value;
+        var answer3 = document.getElementById('question3').value;
+        var answer4 = document.getElementById('question4').value;
+        var answer5 = document.getElementById('question5').value;
+        var answer6 = document.getElementById('question6').value;
 
+        var correctAnswers = 0;
 
+        if (answer1.toLowerCase() === topic_answer_one.toLowerCase()) correctAnswers++;
+        if (answer2.toLowerCase() === topic_answer_two.toLowerCase()) correctAnswers++;
+        if (answer3.toLowerCase() === topic_answer_three.toLowerCase()) correctAnswers++;
+        if (answer4.toLowerCase() === topic_answer_four.toLowerCase()) correctAnswers++;
+        if (answer5.toLowerCase() === topic_answer_five.toLowerCase()) correctAnswers++;
+        if (answer6.toLowerCase() === topic_answer_six.toLowerCase()) correctAnswers++;
 
-    var answer1 = document.getElementById('question1').value;
-    var answer2 = document.getElementById('question2').value;
-    var answer3 = document.getElementById('question3').value;
-    var answer4 = document.getElementById('question4').value;
-    var answer5 = document.getElementById('question5').value;
-    var answer6 = document.getElementById('question6').value;
+        var resultMessage = 'Кількість правильних відповідей: ' + correctAnswers;
+        document.getElementById('resultMessage').innerHTML = resultMessage;
 
-    var correctAnswers = 0;
+        document.getElementById('question1').value = '';
+        document.getElementById('question2').value = '';
+        document.getElementById('question3').value = '';
+        document.getElementById('question4').value = '';
+        document.getElementById('question5').value = '';
+        document.getElementById('question6').value = '';
 
-    if (answer1.toLowerCase() === topic_answer_one.toLowerCase()) {
-        correctAnswers++;
-    }
+        var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        modal.show();
 
-    if (answer2.toLowerCase() === topic_answer_two.toLowerCase()) {
-        correctAnswers++;
-    }
+        var userId = sessionStorage.getItem("userId");
+        var TopicTestId_forFetch = getParameterByName('topicTestId');
 
-    if (answer3.toLowerCase() === topic_answer_three.toLowerCase()) {
-        correctAnswers++;
-    }
+        var bodyForFetch = {
+            user_id: userId,
+            topic_test_id: TopicTestId_forFetch,
+            attempt_result: correctAnswers
+        }
 
-    if (answer4.toLowerCase() === topic_answer_four.toLowerCase()) {
-        correctAnswers++;
-    }
-    
-    if (answer5.toLowerCase() === topic_answer_five.toLowerCase()) {
-        correctAnswers++;
-    }
-    
-    if (answer6.toLowerCase() === topic_answer_six.toLowerCase()) {
-        correctAnswers++;
-    }
-
-
-    var resultMessage = 'Кількість правильних відповідей: ' + correctAnswers;
-    document.getElementById('resultMessage').innerHTML = resultMessage;
-
-    document.getElementById('question1').value = '';
-    document.getElementById('question2').value = '';
-    document.getElementById('question3').value = '';
-
-    var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
-    modal.show();
-
-    var userId = sessionStorage.getItem("userId");
-    var TopicTestId_forFetch = getParameterByName('topicTestId');
-
-    var bodyForFetch={
-        user_id: userId,
-        topic_test_id: TopicTestId_forFetch,
-        attempt_result: correctAnswers
-    }
-
-    
-    fetch("http://localhost:3000/sendTestAttempt", {
+        fetch("http://localhost:3000/sendTestAttempt", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(bodyForFetch)
         });
-
-}
-
-
-document.getElementById('prevQuestion').addEventListener('click', function() {
-    if (currentQuestion > 1) {
-        currentQuestion--;
-        showQuestion(currentQuestion);
     }
-});
 
-document.getElementById('nextQuestion').addEventListener('click', function() {
-    if (currentQuestion < 6) { // Ваша кількість питань
-        currentQuestion++;
-        showQuestion(currentQuestion);
-    }
-});
-
-
-
-
-function showQuestion(questionNumber) {
-    document.querySelectorAll('.mb-3').forEach(function(question) {
-        question.style.display = 'none';
+    document.getElementById('prevQuestion').addEventListener('click', function() {
+        if (currentQuestion > 1) {
+            currentQuestion--;
+            showQuestion(currentQuestion);
+        }
     });
-    document.querySelector('#question' + questionNumber + 'Div').style.display = 'block';
-}
 
-showQuestion(currentQuestion);
+    document.getElementById('nextQuestion').addEventListener('click', function() {
+        if (currentQuestion < 6) {
+            currentQuestion++;
+            showQuestion(currentQuestion);
+        }
+    });
 
+    function showQuestion(questionNumber) {
+        document.querySelectorAll('.mb-3').forEach(function(question) {
+            question.style.display = 'none';
+        });
+        document.querySelector('#question' + questionNumber + 'Div').style.display = 'block';
+    }
 
-function redirectToIndex() {
-    window.location.href = './topics_list_page.html';
-}
+    showQuestion(currentQuestion);
 
-if (sessionStorage.getItem("userId") === null || sessionStorage.getItem("userId") === undefined) {
-    window.location.href = "./login_page.html";
-}
+    function redirectToIndex() {
+        window.location.href = './topics_list_page.html';
+    }
 
-    </script>
-
-
+    if (!sessionStorage.getItem("userId")) {
+        window.location.href = "./login_page.html";
+    }
+</script>
 
 </body>
 </html>

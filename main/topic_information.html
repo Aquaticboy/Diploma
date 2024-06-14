@@ -7,115 +7,120 @@
     <link rel="shortcut icon" href="/images/alphabet.png" type="image/x-icon"/> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/style.css">
-
+    <style>
+        body {
+            background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+            font-family: 'Comic Sans MS', sans-serif;
+            color: #333;
+        }
+        .btn-primary {
+            background-color: #ff6f61;
+            border: none;
+            font-size: 1.1rem;
+        }
+        .btn-primary:hover {
+            background-color: #ff4f41;
+        }
+        h1 {
+            color: #ff6f61;
+        }
+        .blockquote-footer {
+            font-size: 1rem;
+            color: #ff6f61;
+        }
+    </style>
 </head>
 <body>
-   
     <a href="./topics_list_page.html" style="margin: 10px; display: inline-block;">
-        <i class="bi bi-arrow-left-square-fill"></i>
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
             <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1"/>
         </svg>
     </a>
-    
-
-
-<div id="topic-main-information"></div>
-
-<script>
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, '\\$&');
-        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
-
-    var TopicId = getParameterByName('topicInformationId');
-
-    var body_for_fetch = {
-        topicId: TopicId
-    }
-
-    fetch("http://localhost:3000/getInformationForTopicPage", {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body_for_fetch)
-    })
-    .then(response => response.json())
-    .then(data => {        
-        const topicData = data[0];
-
-
-        const { topic_id, topic_name, topic_description, topic_creator_information, topic_main_information, topic_test_id } = topicData;
-
-
-        const fettchbody = {
-            user_id: topic_creator_information
+    <div id="topic-main-information"></div>
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
 
-        fetch("http://localhost:3000/getuserinformationbyid", {
+        var TopicId = getParameterByName('topicInformationId');
+
+        var body_for_fetch = {
+            topicId: TopicId
+        }
+
+        fetch("http://localhost:3000/getInformationForTopicPage", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(fettchbody)
+        body: JSON.stringify(body_for_fetch)
         })
         .then(response => response.json())
-        .then(data1 => {
+        .then(data => {        
+            const topicData = data[0];
 
-            var div_mainInformation = document.getElementById('topic-main-information');
+            const { topic_id, topic_name, topic_description, topic_creator_information, topic_main_information, topic_test_id } = topicData;
 
-            div_mainInformation.innerHTML=`
-                
-            <figure class="text-center">
-            <blockquote class="blockquote">
-            <h1>${topic_name}</h1>
-            </blockquote>
-            <figcaption class="blockquote-footer">
-            Topic created by <cite title="Source Title">${data1.user_name} ${data1.user_surname}</cite>
-            </figcaption>
-            </figure>
+            const fettchbody = {
+                user_id: topic_creator_information
+            }
 
-            <div class="container">
-            <div class="row">
-            <div class="col-1" >
-            </div>
-            <div class="col-10">
-            ${topic_main_information}
-            </div>
-            <div class="col-1">
-            </div>
-            </div>
+            fetch("http://localhost:3000/getuserinformationbyid", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(fettchbody)
+            })
+            .then(response => response.json())
+            .then(data1 => {
 
-            <br><br><br>
+                var div_mainInformation = document.getElementById('topic-main-information');
 
-            <div class="d-grid gap-2">
-            <button onclick="location.href='./topic_test_page.html?topicTestId=${topic_test_id}';" class="btn btn-primary" style="position:fixed;bottom:0;left:0;right:0;height:50px;" type="button">Пройти тестування</button>
-            </div>
+                div_mainInformation.innerHTML=`
+                    
+                <figure class="text-center">
+                <blockquote class="blockquote">
+                <h1>${topic_name}</h1>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                Topic created by <cite title="Source Title">${data1.user_name} ${data1.user_surname}</cite>
+                </figcaption>
+                </figure>
 
-            `;
+                <div class="container">
+                <div class="row">
+                <div class="col-1" >
+                </div>
+                <div class="col-10">
+                ${topic_main_information}
+                </div>
+                <div class="col-1">
+                </div>
+                </div>
 
+                <br><br><br>
 
+                <div class="d-grid gap-2">
+                <button onclick="location.href='./topic_test_page.html?topicTestId=${topic_test_id}';" class="btn btn-primary" style="position:fixed;bottom:0;left:0;right:0;height:50px;" type="button">Пройти тестування</button>
+                </div>
 
-
+                `;
+            })
         })
-      
-    })
-    .catch(error =>{
-        console.error('Error fetching data:', error);
-    });
+        .catch(error =>{
+            console.error('Error fetching data:', error);
+        });
 
-    if (sessionStorage.getItem("userId") === null || sessionStorage.getItem("userId") === undefined) {
-    window.location.href = "./login_page.html";
-}
-
-</script>
-    
+        if (sessionStorage.getItem("userId") === null || sessionStorage.getItem("userId") === undefined) {
+            window.location.href = "./login_page.html";
+        }
+    </script>
 </body>
 </html>

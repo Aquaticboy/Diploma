@@ -8,6 +8,50 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 100%);
+            font-family: 'Comic Sans MS', sans-serif;
+            color: #333;
+        }
+        h1 {
+            color: #ff6f61;
+            margin-bottom: 30px;
+        }
+        .form-label {
+            font-size: 1.2rem;
+            color: #ff6f61;
+        }
+        .form-control {
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #ff6f61;
+            border: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+        .btn-primary:hover {
+            background-color: #e55b5b;
+        }
+        .modal-content {
+            border-radius: 15px;
+        }
+        .modal-header, .modal-footer {
+            background-color: #ff6f61;
+            color: white;
+        }
+        .modal-footer .btn-primary {
+            background-color: white;
+            color: #ff6f61;
+            border: 2px solid #ff6f61;
+        }
+        .modal-footer .btn-primary:hover {
+            background-color: #ff6f61;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,97 +64,96 @@
 <h1 class="text-center">Оновлення теми</h1>
 <form id="topicForm">
     <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <label for="" class="form-label">Назва теми</label>
-            <input type="text" class="form-control" id="form-topic-name" placeholder=""/>
-          </div>
+        <div class="row mb-3">
+            <div class="col-sm">
+                <label for="form-topic-name" class="form-label">Назва теми</label>
+                <input type="text" class="form-control" id="form-topic-name" placeholder=""/>
+            </div>
         </div>
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-sm">
-              <label for="" class="form-label">Опис теми</label>
-              <input type="text" class="form-control" id="form-topic-description" placeholder=""/>
+                <label for="form-topic-description" class="form-label">Опис теми</label>
+                <input type="text" class="form-control" id="form-topic-description" placeholder=""/>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm">
-              <label for="" class="form-label">Основна інформація теми</label>
-              <textarea class="form-control" name="" id="form-topic-main-information" rows="13"></textarea>
-          </div>
         </div>
-      </div>
-    
-      <br><hr><br>
-      <h1 class="text-center">Оновлення тестування для теми</h1>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <label for="" class="form-label">Питання №1</label>
-            <input type="text" class="form-control" id="form-question1" placeholder=""/>
-          </div>
-          <div class="col-sm">
-            <label for="" class="form-label">Відповідь до питання №1</label>
-            <input type="text" class="form-control" id="form-answer1" placeholder=""/>
-          </div>
+        <div class="row mb-3">
+            <div class="col-sm">
+                <label for="form-topic-main-information" class="form-label">Основна інформація теми</label>
+                <textarea class="form-control" id="form-topic-main-information" rows="13"></textarea>
+            </div>
         </div>
-        <div class="row">
+    </div>
+
+    <br><hr><br>
+    <h1 class="text-center">Оновлення тестування для теми</h1>
+    <div class="container">
+        <div class="row mb-3">
             <div class="col-sm">
-              <label for="" class="form-label">Питання №2</label>
-              <input type="text" class="form-control" id="form-question2" placeholder=""/>
+                <label for="form-question1" class="form-label">Питання №1</label>
+                <input type="text" class="form-control" id="form-question1" placeholder=""/>
             </div>
             <div class="col-sm">
-              <label for="" class="form-label">Відповідь до питання №2</label>
-              <input type="text" class="form-control" id="form-answer2" placeholder=""/>
+                <label for="form-answer1" class="form-label">Відповідь до питання №1</label>
+                <input type="text" class="form-control" id="form-answer1" placeholder=""/>
             </div>
-          </div>
-          <div class="row">
+        </div>
+        <div class="row mb-3">
             <div class="col-sm">
-              <label for="" class="form-label">Питання №3</label>
-              <input type="text" class="form-control" id="form-question3" placeholder=""/>
-            </div>
-            <div class="col-sm">
-              <label for="" class="form-label">Відповідь до питання №3</label>
-              <input type="text" class="form-control" id="form-answer3" placeholder=""/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm">
-              <label for="" class="form-label">Питання №4</label>
-              <input type="text" class="form-control" id="form-question4" placeholder=""/>
+                <label for="form-question2" class="form-label">Питання №2</label>
+                <input type="text" class="form-control" id="form-question2" placeholder=""/>
             </div>
             <div class="col-sm">
-              <label for="" class="form-label">Відповідь до питання №4</label>
-              <input type="text" class="form-control" id="form-answer4" placeholder=""/>
+                <label for="form-answer2" class="form-label">Відповідь до питання №2</label>
+                <input type="text" class="form-control" id="form-answer2" placeholder=""/>
             </div>
-          </div>
-          <div class="row">
+        </div>
+        <div class="row mb-3">
             <div class="col-sm">
-              <label for="" class="form-label">Питання №5</label>
-              <input type="text" class="form-control" id="form-question5" placeholder=""/>
-            </div>
-            <div class="col-sm">
-              <label for="" class="form-label">Відповідь до питання №5</label>
-              <input type="text" class="form-control" id="form-answer5" placeholder=""/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm">
-              <label for="" class="form-label">Питання №6</label>
-              <input type="text" class="form-control" id="form-question6" placeholder=""/>
+                <label for="form-question3" class="form-label">Питання №3</label>
+                <input type="text" class="form-control" id="form-question3" placeholder=""/>
             </div>
             <div class="col-sm">
-              <label for="" class="form-label">Відповідь до питання №6</label>
-              <input type="text" class="form-control" id="form-answer6" placeholder=""/>
+                <label for="form-answer3" class="form-label">Відповідь до питання №3</label>
+                <input type="text" class="form-control" id="form-answer3" placeholder=""/>
             </div>
-          </div>
-      </div>
-      <br>
-      <div class="d-flex justify-content-center mt-2">
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm">
+                <label for="form-question4" class="form-label">Питання №4</label>
+                <input type="text" class="form-control" id="form-question4" placeholder=""/>
+            </div>
+            <div class="col-sm">
+                <label for="form-answer4" class="form-label">Відповідь до питання №4</label>
+                <input type="text" class="form-control" id="form-answer4" placeholder=""/>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm">
+                <label for="form-question5" class="form-label">Питання №5</label>
+                <input type="text" class="form-control" id="form-question5" placeholder=""/>
+            </div>
+            <div class="col-sm">
+                <label for="form-answer5" class="form-label">Відповідь до питання №5</label>
+                <input type="text" class="form-control" id="form-answer5" placeholder=""/>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm">
+                <label for="form-question6" class="form-label">Питання №6</label>
+                <input type="text" class="form-control" id="form-question6" placeholder=""/>
+            </div>
+            <div class="col-sm">
+                <label for="form-answer6" class="form-label">Відповідь до питання №6</label>
+                <input type="text" class="form-control" id="form-answer6" placeholder=""/>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center mt-2">
         <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Підтвердити оновлення теми та тестування
         </button>
     </div>
-    
 </form>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -162,18 +205,9 @@
         })
         .then(response => response.json())
         .then(data => {
-
-
-          //document.getElementById("nameforchange").value = user_Name;
-
           document.getElementById("form-topic-name").value = data[0].topic_name;
           document.getElementById("form-topic-description").value = data[0].topic_description;
           document.getElementById("form-topic-main-information").value = data[0].topic_main_information;
-
-
-
-
-
 
           const fetchbody2 = {
             topicTestId: topic_id
@@ -188,8 +222,6 @@
               })
               .then(response => response.json())
               .then(data1 => {
-
-                  
                   document.getElementById("form-question1").value = data1[0].topic_question_one;
                   document.getElementById("form-answer1").value = data1[0].topic_answer_one;
                   document.getElementById("form-question2").value = data1[0].topic_question_two;
@@ -202,19 +234,8 @@
                   document.getElementById("form-answer5").value = data1[0].topic_answer_five;
                   document.getElementById("form-question6").value = data1[0].topic_question_six;
                   document.getElementById("form-answer6").value = data1[0]. topic_answer_six;
-
-
               })
-
-          
-
-
-
-
         })
-
-
-
 
     function createTopicAndTest() {
         var topic_id = getParameterByName("topicId");
@@ -296,9 +317,8 @@
     }
 
     if (sessionStorage.getItem("userId") === null || sessionStorage.getItem("userId") === undefined) {
-    window.location.href = "./login_page.html";
-}
-
+        window.location.href = "./login_page.html";
+    }
 </script>
 </body>
 </html>
