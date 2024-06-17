@@ -6,45 +6,56 @@
     <title>Створення теми</title>
     <link rel="shortcut icon" href="/images/alphabet.png" type="image/x-icon"/> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
     <style>
-      body {
-          background: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 100%);
-          font-family: 'Comic Sans MS', sans-serif;
-          color: #333;
-      }
-      h1 {
-          color: #ff6f61;
-          margin-bottom: 30px;
-      }
-      .container {
-          margin-top: 20px;
-          padding: 20px;
-          border-radius: 15px;
-          background-color: #fff;
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      }
-      .btn-link {
-          font-size: 1.2rem;
-          color: #ff6f61;
-      }
-      .btn-link:hover {
-          color: #e55b5b;
-      }
-      .topic-card {
-          margin-bottom: 20px;
-          border: 2px solid #ff6f61;
-          border-radius: 10px;
-          padding: 15px;
-      }
-      .topic-card h2 {
-          border-bottom: 1px solid #ff6f61;
-          padding-bottom: 10px;
-      }
-  </style>
+        body {
+            background-color: #fff5e6;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #ff6600;
+            padding: 10px 20px;
+            color: white;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+        }
+        h1 {
+            color: #ff6600;
+        }
+        .form-label {
+            color: #ff6600;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ff6600;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #ff6600;
+            border-color: #ff6600;
+        }
+        .btn-primary:hover {
+            background-color: #e65c00;
+            border-color: #cc5200;
+        }
+        .modal-content {
+            background-color: #fff5e6;
+        }
+        .modal-title {
+            color: #ff6600;
+        }
+        .bi-arrow-left-square-fill, .bi-arrow-left-square-fill svg {
+            color: #ff6600;
+        }
+    </style>
 </head>
 <body>
-
 <a href="./topics_list_page.html" style="margin: 10px; display: inline-block;">
     <i class="bi bi-arrow-left-square-fill"></i>
     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
@@ -54,96 +65,94 @@
 <h1 class="text-center">Створення теми</h1>
 <form id="topicForm">
     <div class="container">
-        <div class="row mb-3">
-            <div class="col-sm">
-                <label for="" class="form-label">Назва теми</label>
-                <input type="text" class="form-control" id="form-topic-name" placeholder=""/>
-            </div>
+        <div class="row">
+          <div class="col-sm">
+            <label for="" class="form-label">Назва теми</label>
+            <input type="text" class="form-control" id="form-topic-name" placeholder=""/>
+          </div>
         </div>
-        <div class="row mb-3">
+        <div class="row">
             <div class="col-sm">
-                <label for="" class="form-label">Опис теми</label>
-                <input type="text" class="form-control" id="form-topic-description" placeholder=""/>
+              <label for="" class="form-label">Опис теми</label>
+              <input type="text" class="form-control" id="form-topic-description" placeholder=""/>
             </div>
-        </div>
-        <div class="row mb-3">
+          </div>
+          <div class="row">
             <div class="col-sm">
-                <label for="" class="form-label">Основна інформація теми</label>
-                <textarea class="form-control" name="" id="form-topic-main-information" rows="13"></textarea>
-            </div>
+              <label for="" class="form-label">Основна інформація теми</label>
+              <textarea class="form-control" name="" id="form-topic-main-information" rows="13"></textarea>
+          </div>
         </div>
+      </div>
+  <br><hr><br>
+  <h1 class="text-center">Створення тестування для теми</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <label for="" class="form-label">Питання №1</label>
+        <input type="text" class="form-control" id="form-question1" placeholder=""/>
+      </div>
+      <div class="col-sm">
+        <label for="" class="form-label">Відповідь до питання №1</label>
+        <input type="text" class="form-control" id="form-answer1" placeholder=""/>
+      </div>
     </div>
-
-    <br><hr><br>
-    <h1 class="text-center">Створення тестування для теми</h1>
-    <div class="container">
-        <div class="row mb-3">
-            <div class="col-sm">
-                <label for="" class="form-label">Питання №1</label>
-                <input type="text" class="form-control" id="form-question1" placeholder=""/>
-            </div>
-            <div class="col-sm">
-                <label for="" class="form-label">Відповідь до питання №1</label>
-                <input type="text" class="form-control" id="form-answer1" placeholder=""/>
-            </div>
+    <div class="row">
+        <div class="col-sm">
+          <label for="" class="form-label">Питання №2</label>
+          <input type="text" class="form-control" id="form-question2" placeholder=""/>
         </div>
-        <div class="row mb-3">
-            <div class="col-sm">
-                <label for="" class="form-label">Питання №2</label>
-                <input type="text" class="form-control" id="form-question2" placeholder=""/>
-            </div>
-            <div class="col-sm">
-                <label for="" class="form-label">Відповідь до питання №2</label>
-                <input type="text" class="form-control" id="form-answer2" placeholder=""/>
-            </div>
+        <div class="col-sm">
+          <label for="" class="form-label">Відповідь до питання №2</label>
+          <input type="text" class="form-control" id="form-answer2" placeholder=""/>
         </div>
-        <div class="row mb-3">
-            <div class="col-sm">
-                <label for="" class="form-label">Питання №3</label>
-                <input type="text" class="form-control" id="form-question3" placeholder=""/>
-            </div>
-            <div class="col-sm">
-                <label for="" class="form-label">Відповідь до питання №3</label>
-                <input type="text" class="form-control" id="form-answer3" placeholder=""/>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <label for="" class="form-label">Питання №3</label>
+          <input type="text" class="form-control" id="form-question3" placeholder=""/>
         </div>
-        <div class="row mb-3">
-            <div class="col-sm">
-                <label for="" class="form-label">Питання №4</label>
-                <input type="text" class="form-control" id="form-question4" placeholder=""/>
-            </div>
-            <div class="col-sm">
-                <label for="" class="form-label">Відповідь до питання №4</label>
-                <input type="text" class="form-control" id="form-answer4" placeholder=""/>
-            </div>
+        <div class="col-sm">
+          <label for="" class="form-label">Відповідь до питання №3</label>
+          <input type="text" class="form-control" id="form-answer3" placeholder=""/>
         </div>
-        <div class="row mb-3">
-            <div class="col-sm">
-                <label for="" class="form-label">Питання №5</label>
-                <input type="text" class="form-control" id="form-question5" placeholder=""/>
-            </div>
-            <div class="col-sm">
-                <label for="" class="form-label">Відповідь до питання №5</label>
-                <input type="text" class="form-control" id="form-answer5" placeholder=""/>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <label for="" class="form-label">Питання №4</label>
+          <input type="text" class="form-control" id="form-question4" placeholder=""/>
         </div>
-        <div class="row mb-3">
-            <div class="col-sm">
-                <label for="" class="form-label">Питання №6</label>
-                <input type="text" class="form-control" id="form-question6" placeholder=""/>
-            </div>
-            <div class="col-sm">
-                <label for="" class="form-label">Відповідь до питання №6</label>
-                <input type="text" class="form-control" id="form-answer6" placeholder=""/>
-            </div>
+        <div class="col-sm">
+          <label for="" class="form-label">Відповідь до питання №4</label>
+          <input type="text" class="form-control" id="form-answer4" placeholder=""/>
         </div>
-    </div>
-    <br>
-    <div class="d-flex justify-content-center mt-2">
-        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Підтвердити створення теми та тестування</button>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <label for="" class="form-label">Питання №5</label>
+          <input type="text" class="form-control" id="form-question5" placeholder=""/>
+        </div>
+        <div class="col-sm">
+          <label for="" class="form-label">Відповідь до питання №5</label>
+          <input type="text" class="form-control" id="form-answer5" placeholder=""/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <label for="" class="form-label">Питання №6</label>
+          <input type="text" class="form-control" id="form-question6" placeholder=""/>
+        </div>
+        <div class="col-sm">
+          <label for="" class="form-label">Відповідь до питання №6</label>
+          <input type="text" class="form-control" id="form-answer6" placeholder=""/>
+        </div>
+      </div>
+  </div>
+  <br>
+  <div class="d-flex justify-content-center mt-2">
+  <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Підтвердити створення теми та тестування</button>
     </div>
 </form>
-
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -155,4 +164,80 @@
                 Тема та тестування успішно створені та додані!
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="window.location.href =
+                <button type="button" class="btn btn-primary" onclick="window.location.href = './topics_list_page.html';">Завершити</button>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<script>
+    document.getElementById('topicForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        createTopicAndTest();
+    });
+
+    function createTopicAndTest(){
+        var userId = sessionStorage.getItem("userId");
+        var userPermitionLevel = sessionStorage.getItem("userPermitionLevel");
+
+        var topicName = document.getElementById("form-topic-name").value;
+        var topicDescription = document.getElementById("form-topic-description").value;
+        var topicMainInformation = document.getElementById("form-topic-main-information").value;
+
+        var question1 = document.getElementById("form-question1").value;
+        var answer1 = document.getElementById("form-answer1").value;
+        var question2 = document.getElementById("form-question2").value;
+        var answer2 = document.getElementById("form-answer2").value;
+        var question3 = document.getElementById("form-question3").value;
+        var answer3 = document.getElementById("form-answer3").value;
+        var question4 = document.getElementById("form-question4").value;
+        var answer4 = document.getElementById("form-answer4").value;
+        var question5 = document.getElementById("form-question5").value;
+        var answer5 = document.getElementById("form-answer5").value;
+        var question6 = document.getElementById("form-question6").value;
+        var answer6 = document.getElementById("form-answer6").value;
+
+        const body_creatingTopic = {
+            user_id: userId,
+            user_permition_level: userPermitionLevel,
+            topic_name: topicName,
+            topic_description: topicDescription,
+            topic_main_information: topicMainInformation,
+            topic_question_one: question1,
+            topic_question_two: question2,
+            topic_question_three: question3,
+            topic_question_four: question4,
+            topic_question_five: question5,
+            topic_question_six: question6,
+            topic_answer_one: answer1,
+            topic_answer_two: answer2,
+            topic_answer_three: answer3,
+            topic_answer_four: answer4,
+            topic_answer_five: answer5,
+            topic_answer_six: answer6
+        };
+
+        fetch("http://localhost:3000/createTopicAndTopicTest", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body_creatingTopic)
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+
+    }
+    
+    if (sessionStorage.getItem("userId") === null || sessionStorage.getItem("userId") === undefined) {
+    window.location.href = "./login_page.html";
+}
+</script>
+</body>
+</html>
